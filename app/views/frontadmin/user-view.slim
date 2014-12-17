@@ -1,0 +1,11 @@
+/ user-view.slim
+
+section class="profile"
+	header
+		h1 User profile for #{@user.name}
+
+	== partial 'partials/user-data', :locals => {:user => @user, :admin_mode => true}
+	== partial 'partials/workers-list', :locals => {:user => @user, :admin_mode => true}
+	== partial 'partials/wallets-list', :locals => {:user => @user, :admin_mode => true}
+	== partial 'partials/bitcoin-wallet', :locals => {:user => @user, :admin_mode => true}
+	== partial 'partials/user-transactions', :locals => {:user => @user, :admin_mode => true}

@@ -1,0 +1,76 @@
+/ index.slim
+
+- content_for :page_title
+	= t 'site.name'
+	': Comunidad de minado combinado de cryptomoneda
+
+section id="welcome"
+	header
+		h2 Bienvenido a la comunidad de mineros inteligentes
+
+	div.row
+		div class="large-6 small-12 columns home-left"
+			div.row
+				- if current_account.nil?
+					a class="button radius alert large-12 columns" href="/register/user"
+						h4 class="zx-white-b"
+							i> class="fi-page-edit"
+							| REGÍSTRATE
+					a class="button radius success large-12 columns" href="/auth/login"
+						h4 class="zx-white-b"
+							i> class="fi-torso"
+							| ACCEDE
+				- else
+					a class="button radius success large-12 columns" href="/auth/login"
+						h4 class="zx-white-b"
+							i> class="fi-home"
+							| BIENVENIDO #{current_account.name}
+					a class="button radius alert large-12 columns" href="/auth/logout"
+						h4 class="zx-white-b"
+							i> class="fi-foot"
+							| DESCONECTAR
+
+			div.row
+				section#doc-list
+					header
+						h4
+							i> class="fi-heart"
+							| Ayuda
+					ul
+						li
+							i> class="fi-megaphone"
+							a href="/news" Últimas noticias y avisos
+						li
+							i> class="fi-list"
+							a href="/docs/about" Acerca de esta comunidad
+						li
+							i> class="fi-list"
+							a href="/docs/policy" Aviso legal
+						li
+							i> class="fi-list"
+							a href="/docs/howto" Instrucciones de uso
+						li
+							i> class="fi-bitcoin-circle"
+							a href="/docs/coins" Monedas soportadas
+						li
+							i> class="fi-plus"
+							a href="/docs/coin-add" Añadir monedas
+						li
+							i> class="fi-dollar"
+							a href="/docs/mining" Minado, repartos y comisiones
+						li
+							i> class="fi-mail"
+							a href="/contact" Contactar
+						li
+							i> class="fi-social-twitter"
+							a href="http://twitter.com/manicminerpool" Twitter @ManicMinerPool
+						li
+							i> class="fi-social-facebook"
+							a href="https://www.facebook.com/pages/The-Manic-Miner/354200368056521"
+								| Facebook The Manic Miner
+						li
+							i> class="fi-asterisk"
+							a href="http://pesetacoin.info/foro/index.php?topic=29.0"
+								| Hilo oficial foro PesetaCoin
+
+		div class="large-5 small-12 columns right home-right" == @tweetsBlock

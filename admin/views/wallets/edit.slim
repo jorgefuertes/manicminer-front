@@ -1,0 +1,8 @@
+ul class="nav nav-tabs"
+  li = link_to tag_icon(:list, pat(:list)), url(:wallets, :index)
+  li = link_to tag_icon(:plus, pat(:new)), url(:wallets, :new)
+  li class="active" = link_to tag_icon(:edit, pat(:edit)), url(:wallets, :edit, :id => @wallet.id)
+
+div class="tabs-content"
+  - form_for :wallet, url(:wallets, :update, :id => @wallet.id), :method => :put, :class => 'form-horizontal' do |f|
+    = partial 'wallets/form', :locals => { :f => f }

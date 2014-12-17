@@ -1,0 +1,55 @@
+/ _menu.slim
+
+nav class="top-bar" data-topbar=""
+    ul class="title-area"
+        li class="name"
+        li class="toggle-topbar menu-icon"
+            a href="#": span = t 'buttons.menu'
+    section class="top-bar-section"
+        / Right nav
+        ul class="right"
+            - if current_account and current_account.role == 'admin'
+                li class="has-dropdown"
+                    a href="#" Admin
+                    ul class="dropdown"
+                        li: a href="/admin" Backend
+                        li: a href="/frontadmin/users" Users
+                        li: a href="/frontadmin/news" News
+                        li: a href="/frontadmin/coins" Coins
+                        li: a href="/frontadmin/backups" Backups
+
+            li class="has-dropdown"
+                a href="#" = t 'titles.youraccount'
+                ul class="dropdown"
+        	        - if current_account.nil?
+                        li: a href="/auth/login" = t 'titles.login'
+                    - else
+            	       li: a href="/user/profile" [#{current_account.name}]
+                       li: a href="/user/transactions" = t 'titles.transactions'
+            	       li: a href="/auth/logout" = t 'titles.logout'
+
+        / Left nav
+        ul class="left"
+            li class="has-dropdown"
+                a href="#" Info
+                ul class="dropdown"
+                    li: a href="/" = t 'titles.help_docs'
+                    li: a href="/contact" = t 'titles.contact'
+            li
+                a href="/news" = t 'titles.news'
+            li class="has-dropdown"
+                a href="#" = t 'titles.statistics'
+                ul class="dropdown"
+                    li: a href="/stats/general" = t 'titles.generalStats'
+                    li: a href="/stats/blocks"  = t 'titles.lastblocks'
+                    li: a href="/stats/power-table" = t 'titles.power_table'
+                    li: a href="/stats/changes-table" = t 'titles.changes_table'
+            li class="has-dropdown"
+                a href="#" = t 'titles.languages'
+                ul class="dropdown"
+                    - hostname = "#{request.host.split('.')[-2]}.#{request.host.split('.')[-1]}"
+                    - hostname += ":#{request.port}" unless request.port == 80
+                    - getLocaleList.each do |locale|
+                        li
+                            a href="#{request.scheme}://#{locale}.#{hostname}#{request.env['REQUEST_URI']}"
+                                = t "locales.#{locale}"

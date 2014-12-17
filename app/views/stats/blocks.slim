@@ -1,0 +1,48 @@
+/ blocks.slim
+
+- content_for :page_title
+	= t 'pages.statistics.blocks.title'
+
+section id="last-blocks-section" class="stats large-12 columns"
+	header
+		h1 = t 'pages.statistics.blocks.title'
+
+	fieldset
+		legend
+			i> class="fi-list"
+			== page_entries_info @blocks
+		div class="filters"
+			dl class="sub-nav"
+				dt #{t 'pages.transactions.filter.coin.label'}:
+				- Coin.where(:active => true).each do |currentCoin|
+					- if currentCoin.getBlocks
+						- colorClass = currentCoin.colorClass
+						- colorClass = 'active' if @coin == currentCoin
+						dd class="coin #{colorClass}"
+							a href="/stats/blocks/#{currentCoin.symbol}" #{currentCoin.symbol}
+
+				dd class="all #{'active' unless @coin}"
+					a href="/stats/blocks" = t 'pages.transactions.allCoins'
+
+		div class="pagination"
+			== will_paginate @blocks
+
+		table class="last-blocks-table" class="large-12 columns"
+			thead
+				tr
+					th = t 'pages.statistics.blocks.hour'
+					th class="show-for-large-up" = t 'pages.statistics.blocks.hash'
+					th class="calign" = t 'pages.statistics.blocks.coin'
+					th class="ralign" = t 'pages.statistics.blocks.confirms'
+					th class="ralign" = t 'pages.statistics.blocks.amount'
+			tbody
+				- @blocks.each do |block|
+					tr id="#{block.id}" class="#{block.coin.symbol}"
+						td class="time" = block.created_at
+						td class="hash show-for-large-up" == block.explorerHash
+						td class="coin #{block.coin.colorClass} calign" = block.coin.symbol
+						td class="confirms ralign #{block.confirmed}" = block.confirms
+						td class="amount ralign #{block.confirmed}" = floatToHuman block.amount
+
+		div class="pagination right"
+			== will_paginate @blocks

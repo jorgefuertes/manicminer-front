@@ -1,0 +1,16 @@
+/ registration_email.slim
+
+h2 Hola #{token.user.name}:
+
+p style="margin: 2em .4em;" Has solicitado recuperar la contraseña de ManicMiner.in
+p style="margin: 2em .4em;" Si deseas hacerlo, pincha en el siguiente enlace:
+
+a[
+	class="token"
+	style="background-color: mediumblue;color: white;padding: 8px 16px;border-radius: 4px;margin: 20px 40px;\
+		text-decoration: none;font-weight: bold;font-size: 1.4em;box-shadow: 4px 4px #cdcdcd;"
+	href="#{ManicminerPool::App.abs_url_for(:auth, :recover, :token => token.token)}"]
+		| Cambiar contraseña
+
+p style="margin: 2em .4em;" Si no has solicitado este cambio, simplemente ignora este mensaje y disculpa las molestias.
+p style="margin: 2em .4em;" Muchas gracias. Un saludo de todo el equipo.

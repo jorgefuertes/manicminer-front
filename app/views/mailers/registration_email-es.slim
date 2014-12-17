@@ -1,0 +1,15 @@
+/ registration_email.slim
+
+h2 Hola #{token.user.name}:
+
+p style="margin: 2em .4em;" Bienvenido a la comunidad de mineros más inteligente.
+p style="margin: 2em .4em;" Ahora necesitamos que confirmes tu email, para ello pincha en el siguiente enlace:
+
+a[
+	class="token"
+	style="background-color: mediumblue;color: white;padding: 8px 16px;border-radius: 4px;margin: 20px 40px;\
+		text-decoration: none;font-weight: bold;font-size: 1.4em;box-shadow: 4px 4px #cdcdcd;"
+	href="#{ManicminerPool::App.abs_url_for(:register, :confirm, :token => token.token)}"]
+		| Confirmar mi eMail
+
+p style="margin: 2em .4em;" Muchas gracias. Un saludo de todo el equipo.

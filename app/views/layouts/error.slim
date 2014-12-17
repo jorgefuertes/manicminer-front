@@ -1,0 +1,34 @@
+/ error.slim
+/ Error Layout
+doctype 5
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+
+- message = 'Willy\'s brain error!!!' if message.nil?
+html
+    head
+        / METADATA
+        meta charset="utf-8"
+    	meta name="description" content="#{@title}"
+    	meta name="keywords" content="error"
+        link type="text/plain" rel="author" href="humans.txt"
+        / FAVICON
+    	link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon"
+        / TITLE
+        title = @title
+        / CSS
+    	link rel="stylesheet" href="/stylesheets/errors.css?v=209"
+    body
+        section id="error"
+            header
+                h1 = @title
+                - if @title =~ /^Error/
+                    nav id="options"
+                        header
+                            h4 = t 'pages.error.sorry'
+                        ul
+                            li: a href="/" = t 'pages.error.return'
+                            li: a href="/contact" = t 'pages.error.contact'
+
+            div class="error-message" = message
+
+            == yield

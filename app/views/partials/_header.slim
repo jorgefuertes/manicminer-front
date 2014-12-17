@@ -1,0 +1,21 @@
+/ Main header and menu
+
+header id="main" class="large-12 columns"
+    == partial 'partials/coin-ticker'
+    div class="left show-for-medium-up"
+        div class="logo"
+            a href="/"
+                img src="/images/manicminer-logo.png" alt="Willy" width="468" height="80"
+    div class="show-for-small-down left small-2 columns"
+        div class="logo"
+            a href="/"
+                img src="/images/manicminer_man.png" alt="Willy"
+    div class="right"
+    	- if current_account.nil?
+        	a href="/register/user": button class="round alert relief" = t 'buttons.register'
+        - else
+        	ul class="loggedin"
+                li: a class="zx-green" href="/user/profile" #{t 'welcome'} #{current_account.name}
+    			li: a class="zx-red" href="/auth/logout" = t 'titles.logout'
+
+== partial 'partials/menu'

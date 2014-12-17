@@ -1,0 +1,16 @@
+- content_for :page_title
+	= t 'pages.register.title'
+
+h1 = t 'pages.register.title'
+
+= form_tag '/register/user', {:'data-abide' => "", :id => "registrationForm"}
+	fieldset
+		legend = t 'pages.register.data'
+		div class="row"
+			div class="small-12 columns"
+				== completeInputField :registration, 'text', 'name', {:required => true, :maxlenght => 50,
+					:pattern => "^[0-9a-zA-Z]{4,50}$"}
+				== completeInputField :registration, 'email', 'email', {:required => true, :maxlenght => 255}
+				== completePasswordField :registration
+
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.sendwithrules'

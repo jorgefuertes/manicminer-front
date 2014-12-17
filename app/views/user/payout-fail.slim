@@ -1,0 +1,12 @@
+/ payout-fail.slim
+
+- message = "Unknown exception!"
+- message = @e.message if @e
+
+h4 class="error" = t 'pages.wallet.tx_fail'
+p class="panel" = message
+
+a href="/user/profile"
+	button class="radius success small left"
+		i> class="fi-check"
+		= t 'buttons.back'

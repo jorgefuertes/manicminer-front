@@ -1,0 +1,155 @@
+- content_for :page_title
+	' Mining howto
+
+article class="doc"
+	h1 Getting started
+
+	h3
+		i> class="fi-star"
+		| Create a new account and a worker:
+
+	div class="text"
+		ul
+			li
+				' Register
+				a> href="/register/user" here
+				| you only need an email.
+			li
+				' Create a worker. When you connect one of your miners, for example the graphics card in your computer, you
+				' will identify him with that worker so you can see his statistics and speed. Each worker mines a
+				' main currency you choose.
+
+	h3
+		i> class="fi-star"
+		| Download a mining software:
+
+	div class="text"
+		ul
+			li: a href="http://ck.kolivas.org/apps/cgminer/" CGMiner for Linux/Windows
+			li: a href="http://spaceman.ca/cgminer/" CGMiner Mac OS X
+			li: a href="https://github.com/veox/sgminer" SGMiner
+			li: a href="http://bfgminer.org/" BFGMiner Linux/Windows
+			li: a href="https://bitcointalk.org/index.php?topic=55038.msg654850#msg654850" CPU Miner Mac/Linux/Windows
+			li: a href="https://bitcointalk.org/index.php?topic=167229.0" CUDA Miner Linux/Mac/Windows NVDIA
+
+	h3
+		i> class="fi-star"
+		| Set your wallet:
+
+	div class="text"
+		p Recommended settings for Stratum:
+
+		ul
+			li
+				strong> stratum:
+				code stratum+tcp://pool.manicminer.in
+			li
+				strong> port:
+				code 3333
+			li
+				strong> user:
+				code myuser.worker
+			li
+				strong> password:
+				code any
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' We do not assign any passwords to the workers, if someone wants to mine with your worker we imagine you
+			' will be happy with it.
+			| If your mining software requires you to insert a password you can insert anything and it will work.
+
+	h3
+		i> class="fi-star"
+		| Get the miner to work:
+
+	div class="text"
+		p Command line examples:
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' <strong>REMEMBER</strong> that in GNU/Linux, OsX or other UNIX, you must insert "./" before the command you
+			' want to run when that command is in the current folder. It is a security measure usually included in command
+			| interpreters in UNIX.
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' <strong>In windows</strong> you may need an <em>.exe</em> extensión.
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| CGMiner:
+			code class="block"
+				| cgminer --scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p any
+
+		p class="note"
+			i> class="fi-dislike"
+			' Recently it seems like CGMiner is causing some problems. We recommend using BFGMiner.
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| SGMiner:
+			code class="block"
+				| sgminer --scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p any
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| Minerd:
+			code class="block"
+				| minerd -a scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p any
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| BFGMiner:
+			code class="block"
+				| bfgminer --scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p any
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| CUDAMiner:
+			code class="block"
+				| cudaminer -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p any
+
+	h3
+		i> class="fi-star"
+		| Create the wallets so we can send you the mined money.
+
+	div class="text"
+		p
+			' You must download the software of the currencies you want and activate it. These wallets
+			' will provide you with a direction you must insert in the section <strong>wallets</strong> in your account.
+			== partial 'partials/coin-list'
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' All of your workers mine all the coins at same time, at the port <code>3333</code>.
+
+	h3
+		i> class="fi-star"
+		| Now you are running:
+
+	div class="text"
+		p
+			' In your account section you can see if your miners are working and their approximate speed, calculated
+			' basing on the shares sent within the last minutes, independently to what your card says is doing.
+			' The speed is calculated in the same way for everyone.
+
+		p
+			' You must read now the
+			a href="/docs/mining" Mining Rules and Rewards
+			' .
+
+		p
+			' If you have a question or a suggestion about the instructions, please try at
+			a> href="/forum" forum
+			' first, and you can contact
+			' us using our
+			a href="/contact" contact form
+			| .
+
+		h4 Happy Minning!

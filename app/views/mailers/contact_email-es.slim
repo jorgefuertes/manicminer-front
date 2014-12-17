@@ -1,0 +1,8 @@
+/ contact_email.slim
+
+h2 Formulario de contacto
+
+p style="margin: 2em .4em;"
+	' De: #{mail[:user].name}
+	a href="mailto:#{mail[:user].email}" #{mail[:user].email}
+p style="margin: 2em .4em;" #{mail[:text]}

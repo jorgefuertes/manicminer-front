@@ -1,0 +1,71 @@
+/ profile.slim
+
+- content_for :page_title
+	= t 'titles.myprofile'
+
+- user = current_account
+
+section class="profile"
+	== partial 'partials/user-data', :locals => {:user => current_account, :admin_mode => false}
+	== partial 'partials/workers-list', :locals => {:empty => true}
+	== partial 'partials/wallets-list', :locals => {:empty => true}
+	== partial 'partials/bitcoin-wallet', :locals => {:empty => true}
+	== partial 'partials/user-transactions', :locals => {:empty => true}
+
+== partial 'partials/profile-aux'
+
+- content_for :page_scripts
+	javascript:
+		function deleteWorker(workerId) {
+			$('#delete-worker-modal').html(
+				$('#delete-worker-modal').html().replace(/\#ID/g, workerId)
+			);
+			$('#delete-worker-modal').foundation('reveal', 'open');
+		}
+
+		function updateWorkers() {
+			$("#workers-list .loader").show();
+			$.get(getBaseUrl() + '/userapi/workers/list.html', function(data) {
+	            $("#workers-list .loader").fadeOut(2000);
+	            $('#workers-list').replaceWith(data);
+            });
+		}
+
+		function updateWallets() {
+			$("#wallets-list .loader").show();
+			$.get(getBaseUrl() + '/userapi/wallets/list.html', function(data) {
+	            $("#wallets-list .loader").fadeOut(2000);
+	            $('#wallets-list').replaceWith(data);
+            });
+			$("#btc-wallet .loader").show();
+			$.get(getBaseUrl() + '/userapi/wallets/bitcoin.html', function(data) {
+	            $("#btc-wallet .loader").fadeOut(2000);
+	            $('#btc-wallet').replaceWith(data);
+            });
+		}
+
+		function updateTransactions() {
+			$("#transactions-list .loader").show();
+			$.get(getBaseUrl() + '/userapi/transactions/list.html', function(data) {
+	            $("#transactions-list .loader").fadeOut(2000);
+	            $('#transactions-list').replaceWith(data);
+            });
+		}
+
+		$(document).ready(function() {
+			updateWorkers();
+			updateWallets();
+			updateTransactions();
+		});
+
+		setInterval(function() {
+			updateWorkers();
+		}, 1000 * 30);
+
+		setInterval(function() {
+			updateWallets();
+		}, 1000 * 60);
+
+		setInterval(function() {
+			updateTransactions();
+		}, 1000 * 120);

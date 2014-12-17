@@ -1,0 +1,502 @@
+# es.yml
+
+es:
+    welcome: Bienvenido
+    site:
+        title:  The ManicMiner
+        name:   ManicMiner.in
+        slogan: Cuando los mineros fabricaban sus propios picos
+    meta:
+        description: Comunidad de minado combinado de criptomoneda
+        keywords: 'Minado, criptomoneda, pesetacoin, merged-mining, dogecoin, litecoin, bitcoin, scrypt'
+    auth:
+        login:
+            title: Datos de acceso
+            error: Acceso denegado
+            locked: Cuenta bloqueada
+        logout: Has sido desconectado
+    bool:
+        'true':  'sí'
+        'false': 'no'
+    buttons:
+        send:          Enviar
+        register:      Regístrate
+        sendwithrules: Registrar
+        menu:          Menú
+        ok:            'Sí'
+        cancel:        Cancelar
+        confirm:       Confirmar
+        back:          Volver
+    titles:
+        about:         Acerca de
+        help_docs:     Ayuda y docs
+        policy:        Aviso legal
+        login:         Acceder
+        logout:        Desconectar
+        myprofile:     Mi cuenta
+        youraccount:   Tu cuenta
+        howto:         Instrucciones
+        statistics:    Estadísticas
+        lastblocks:    Últimos bloques
+        generalStats:  Generales
+        contact:       Contactar
+        languages:     Idiomas
+        transactions:  Transacciones
+        coins:         Las monedas
+        loading:       Cargando
+        rules:         Minado y repartos
+        news:          Noticias
+        profits:       Ganancias
+        power_table:   Potencia y ganancias
+        changes_table: Tabla de cambios
+        ticker:
+            title: Cotizaciones
+            date:  Cotizaciones a %{date}
+            min:   min
+            avg:   med
+        contact_and_support: Contacto y soporte
+    alerts:
+        email-confirm:
+            ok:          Tu email ha sido confirmado. Gracias.
+            already:     Tu cuenta ya estaba confirmada.
+            notfound:    No se ha encontrado el token, o está caducado.
+            unconfirmed: Tu cuenta todavía no está activada. No podrás minar si no la activas.
+        user:
+            deactivated: Esta cuenta está desactivada.
+            notfound: Lo siento, no encontramos ningún usuario con estos datos.
+        recoverSend: Instrucciones enviadas a tu email
+        nodata: Lo siento, no hay datos en este momento
+        retry:  Por favor, reintente en unos minutos
+
+    email:
+        welcome: Bienvenido a ManicMiner.in
+        recover: Recuperación de contraseña en ManicMiner.in
+
+    forms:
+        post:
+            index: Administración de noticias
+            new: Nuevo post
+            locale:
+                label: Idioma
+            title:
+                label: Título
+            slug:
+                label: Slug
+                tip: /news/post/tu-slug
+            body:
+                label: Texto
+            saved: Post publicado
+            errors:
+                save: No se pudo guardar el post
+        login:
+            title: Acceso a ManicMiner
+            email:
+                label: Correo electrónico
+                tip:   El email con el que te registraste
+                error: Introduce un email válido
+            password:
+                label: Contraseña
+                tip:   Tu contraseña. Si la has olvidado utiliza el enlace más abajo.
+                error: Introduce tu contraseña
+            forgot: Contraseña olvidada
+        contact:
+            title: Formulario de contacto
+            email:
+                label: Correo electrónico
+                tip:   Buzón al que te contestaremos
+                error: Un email válido
+            subject:
+                label: Asunto
+                tip:   Asunto sobre el que nos quieres contactar
+                error: Introduce un asunto
+            text:
+                label: Tu mensaje
+                tip:   Explícanos lo que quieras.
+                error: Tienes que escribar algo.
+            note: Explícate lo mejor que puedas, por favor.
+        recover:
+            title: Recuperar contraseña
+        registration:
+            email:
+                label: Correo electrónico
+                tip:   Tu correo electrónico
+                error: Introduce un email válido
+            password:
+                label: Contraseña
+                tip:   Tu contraseña.
+                error: Entre 5 y 50 caracteres
+            password_confirmation:
+                label: Repetir contraseña
+                tip:   La misma contraseña que en el otro campo
+                error: Las contraseñas deben coincidir
+            name:
+                label: Nombre de usuario
+                tip:   Tu nick o nombre de usuario. El que quieras pero sin espacios ni signos.
+                error: Sólo letras o números, sin espacios, entre 4 y 50 caracteres
+            errors:
+                save: ¡No se pudo guardar!
+        passwordEdit:
+            oldPassword:
+                label: Contraseña actual
+                tip:   La contraseña con la que accedes hasta ahora
+                error: Entre 5 y 50 caracteres.
+            password:
+                label: Nueva contraseña
+                tip:   Una nueva contraseña a tu elección.
+                error: Entre 5 y 50 caracteres
+            password_confirmation:
+                label: Repetir nueva contraseña
+                tip:   La misma contraseña que en el otro campo
+                error: Las contraseñas deben coincidir
+            ok: Contraseña cambiada correctamente
+            errors:
+                badpass: Contraseña actual incorrecta
+                match:   Las nuevas contraseñas no coinciden
+                save:    No se pudo guardar la nueva contraseña
+        worker:
+            name:
+                label: Nombre del worker
+                tip: >
+                    Un nombre descriptivo, sin espacios, entre 1 y 50 caracteres. Nosotros añadiremos tu nombre de
+                    usuario como prefijo.
+                error: Sólo letras o números, sin espacios, entre 1 y 50 caracteres
+            difficulty:
+                label: Dificultad
+                tip:   'Dificultad a la que quieres que trabaje este worker. Recomendado: Khs/10'
+                error: Sólo números enteros
+            errors:
+                save: ¡No se pudo guardar el worker!
+            note: Dificultad recomendada (Velocidad Khs / 10)
+        wallet:
+            name:
+                label: Nombre del monedero
+                tip:   Un nombre descriptivo, entre 1 y 50 caracteres.
+                error: Rellena el nombre del monedero
+            address:
+                label: Dirección
+                tip:   Dirección de tu monedero
+                error: Rellena la dirección de tu monedero
+            payOn:
+                label: Pago automático
+                tip:   Si introduces una cantidad se te pagará automáticamente cuando tu saldo la supere.
+                error: Número como 1 ó 0.166, máximo 5000.
+            coin:
+                label: Moneda
+                tip:   La moneda correspondiente a este monedero.
+            errors:
+                save: ¡No se pudo guardar el monedero!
+        coin:
+            name:
+                label: Nombre
+                error: Obligatorio
+            symbol:
+                label: Símbolo
+                error: Obligatorio
+            active:
+                label: Activada
+                error: SI/NO
+            getBlocks:
+                label: Bloques
+                error: SI/NO
+            autoShare:
+                label: Repartos
+                error: SI/NO
+            blockValue:
+                label: Valor bloque
+                error: Obligatorio
+            colorClass:
+                label: Clase color
+                error: Obligatorio
+            confirms:
+                label: Confirmaciones
+                error: Obligatorio
+            integerOnly:
+                label: Sólo enteros
+                error: SI/NO
+            mainChain:
+                label: Cadena ppal
+                error: SI/NO
+            poolHost:
+                label: Host pool
+                error: IP o hostname
+            poolPort:
+                label: Puerto pool
+                error: Número
+            port:
+                label: Puerto mineros
+                error: Número
+            rpcHost:
+                label: Host RPC
+                error: IP o hostname
+            rpcPort:
+                label: Puerto RPC
+                error: Número
+            rpcUser:
+                label: Usuario RPC
+                error: User name
+            rpcPass:
+                label: Pass RPC
+                error: Password
+            txFee:
+                label: Comisión transferencia
+                error: Float
+            url:
+                label: Página moneda
+                error: URL
+            urlWallets:
+                label: Página descargas
+                error: URL
+            blockExplorer:
+                label: URL explorador de bloques
+                error: URL
+            powerOn:
+                label: Potencia
+                error: YES/NO
+            tradeOn:
+                label: Tradeo
+                error: YES/NO
+    pages:
+        news:
+            published: Publicado %{time}
+        contact:
+            sended: Enviado. Te responderemos lo antes posible.
+            unauthorized: Lo siento, debes registrarte para contactar.
+        register:
+            title: Registro de mineros
+            data: Datos de acceso
+            ok:
+                title: ¡Te has registrado con éxito!
+                text: >
+                    Hemos registrado tu usario y contraseña, pero para que puedas acceder a tu cuenta deberás
+                    <strong>activarla utilizando el enlace que hemos enviado a tu email</strong>.
+            resend:
+                link: Reenviar activación
+                header: Enlace de activación enviado
+                body: >
+                    Un mensaje de activación ha sido enviado a tu cuenta de correo registrada. Por favor, comprueba tu
+                    carpeta de SPAM.
+        profile:
+            mydata:         Datos de usuario
+            workers:        Workers
+            workersCount:   '%{count} workers'
+            running:        '%{count} minando'
+            wallets:        Monederos
+            walletsCount:   '%{count} monederos'
+            passwordEdit:   Cambiar
+            active:         Activo
+            nonedit:        No se puede editar un worker mientras está minando
+            missingWallets: 'Deberías crear monederos también para: %{list}.'
+            help:           Ayuda
+            workersTip: >
+                Los workers son tus mineros. Los programas con los que minas desde tu ordenador. Su potencia se
+                distribuye automáticamente según la tabla que puedes ver en la info.
+            walletsTip: >
+                Tienes un monedero por cada moneda que minamos. Debes configurar las direcciones de tus monederos
+                externos y el autopago para que podamos enviarte la moneda minada. También tienes un monedero Bitcoin
+                (BTC) que NO procede del minado. En él pondremos los resultados del <em>tradeo</em> si es que quieres
+                <em>tradear</em> alguna de las otras monedas.
+            tradingResults: Resultados de tradeo
+            tradingResultsTip: >
+                Aquí tienes los resultados de tus operaciones de cambio. Puedes cambiar cualquiera de las otras monedas
+                a Bitcoins.
+                *** UNDER DEVELOPMENT ***
+        worker:
+            new: Nuevo worker
+            add: Añadir worker
+            data: Datos del worker
+            saved: Nuevo worker creado
+            updated: Woker actualizado
+            name: Worker
+            difficulty: Dificultad
+            speed: Velocidad
+            active: Activo
+            deleted: El worker ha sido borrado
+            notfound: ¡No se encuentra el worker!
+            coin: Moneda
+            shares: ok(5m)
+            dead: NOOK
+            edit: Editar worker
+            port: Puerto
+        wallet:
+            new: Nuevo monedero
+            add: Añadir monedero
+            data: Datos del monedero
+            saved: Nuevo monedero creado
+            updated: Monedero actualizado
+            name: Monedero
+            deleted: El monedero ha sido borrado
+            notfound: ¡No se encuentra el monedero!
+            address: Dirección
+            coin: Moneda
+            confirmed: Saldo
+            unconfirmed: No confirmado
+            edit: Editar monedero
+            payOn: AutoPago
+            activate: Activar
+            onlyOneActive: Sólo puedes activar un monedero para cada moneda
+            fee: Comisión
+            btc_value: Valor BTC
+            btc_total: Valor total estimado
+            payout: Pago manual
+            tx: Transferencia
+            transfer_ok: Transferencia OK!
+            transfer_fail: Lo siento, la transferencia ha fallado
+            tx_ref: 'Referencia de la transferencia: %{id}'
+            tx_fail: Fallo transferencia
+            tx_ref_attn: 'Por favor, anota la referencia de la transacción: %{id}'
+            autotrade: Cambiar a BTC
+            trade_ok: El cambio se ha ejecutado correctamente
+            trade_changed: Tu saldo o su cambio a BTC ha cambiado, por favor comprueba de nuevo
+            nochange: Lo siento, sin datos de cambio en este momento. Prueba más tarde.
+            nofunds: Lo siento, no tienes saldo en este momento.
+        coin:
+            title:   Monedas y enlaces
+            wallets: Monederos
+            symbol:  Símbolo
+            name:    Nombre
+            info:    Info
+            link:    Enlace
+            count:   '%{count} monedas por el momento'
+            chain:   Cadena
+            main:    ppal
+            sec:     sec
+            trend:   Tendencia
+        password:
+            edit: Cambiar contraseña
+        statistics:
+            blocks:
+                title: Últimos bloques resueltos
+                hour: Hora UTC
+                hash: Hash
+                coin: Moneda
+                confirms: Confirm.
+                amount: Importe
+            general:
+                title: Estadísticas generales
+                poolUse: Uso del pool
+                users: Usuarios
+                unconfirmed: Usuarios no confirmados
+                user: Usuario
+                workers: Workers
+                wallets: Monederos
+                poolPower: Potencia del pool
+                poolSpeed: Velocidad total actual OK
+                avgSpeed: Velocidad media OK
+                poolDeadSpeed: Velocidad aproximada NOOK
+                blocks: Bloques resueltos
+                topUsers: Mineros más veloces
+                speed: Velocidad
+                position: Posición
+                activeUsers: Usuarios activos ahora
+                activeWorkers: Workers activos ahora
+                activeWallets: Monederos activos
+            profits:
+                title:       Tabla de ganancias
+                estimates:   Ganancias estimadas por 1Mhs
+                symbol:      Moneda
+                chain:       Cadena
+                block_value: Valor bloque
+                reward:      Recompensa
+                btc_value:   BTC/1
+                btc_reward:  Recom. BTC
+                updated:     Actualizado cada hora
+                footer: >
+                    Todos los valores son estimaciones, y se calculan cada hora. Los beneficios son para 24h, con
+                    1Mhs de potencia.
+                btc_estimated: Total BTC estimado
+                last_rate: Últ. cambio
+                low_rate: Cambio mín.
+        transactions:
+            tile:         Transacciones
+            last:         Últimas transacciones
+            date:         Fecha
+            comments:     Comentario
+            amount:       Cantidad
+            count:        '%{count} transacciones'
+            address:      Dirección
+            view:         Ver todas
+            coinNotFound: No se encuentra la moneda
+            filter:
+                coin:
+                    label: Monedas
+                type:
+                    label: Tipo
+                    in:    Entrada
+                    out:   Salida
+            allCoins:     Todas
+        charts:
+            min: Mínimo
+            max: Máximo
+            avg: Media
+            updated: Actualizado a %{time}
+            speed:
+                title:      Gráficas de velocidad
+                last_hours: Últimas 24h
+                last_hour:  Última hora
+                last_week:  Últimos 7 días
+                last_month: Últimos 30 días
+                legend:     Velocidad en Mhs y horario en UTC.
+        error:
+            sorry:    ¡Lo siento!
+            contact:  Contactar con soporte
+            return:   Volver al inicio
+    twitter:
+        more: más
+
+    mongo_mapper:
+        errors:
+            models:
+                user:
+                    attributes:
+                        email:
+                            taken: Este email ya está registrado
+                        name:
+                            taken: Este nombre de usuario ya está registrado
+                wallet:
+                    attributes:
+                        address:
+                            taken: Este monedero ya está registrado
+                worker:
+                    attributes:
+                        name:
+                            taken: Este nombre está ocupado
+                        difficulty:
+                            min: Minimum diffculty is 1
+                            max: Maximum diffculty is 1000
+                post:
+                    attributes:
+                        slug:
+                            taken: Ya existe ese slug
+
+    locales:
+        en: Inglés
+        es: Español
+
+    modals:
+        wallet:
+            delete:
+                title: Estás a punto de borrar un monedero
+                text: ¿Estás seguro de que deseas borrar el monedero?
+                ok: Sí, borrar monedero
+        worker:
+            delete:
+                title: Estás a punto de borrar un worker
+                text: ¿Estás seguro de que deseas borrar el worker?
+                ok: Sí, borrar worker
+
+    will_paginate:
+        previous_label: "&#8592; Anteriores"
+        next_label: "Siguientes &#8594;"
+        page_gap: "&hellip;"
+        page_entries_info:
+              single_page:
+                zero:  "Ninguna entrada"
+                one:   "Mostrando 1 registro"
+                other: "Mostrando %{count} registros"
+              single_page_html:
+                zero:  "Ninguna entrada"
+                one:   "Mostrando <b>1</b> registro"
+                other: "Mostrando <b>%{count}</b> registros"
+              multi_page: "Mostrando registros %{from} - %{to} de %{count} en total"
+              multi_page_html: "Mostrando registros <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> en total"
+

@@ -1,0 +1,74 @@
+/ mining.en.slim
+
+- content_for :page_title
+	' Mining, rewards and fees
+
+article class="doc"
+	h1 Mining, rewards and fees
+	h4
+
+	h3
+		i> class="fi-star"
+		| How it all works
+
+	div class="text"
+
+		p
+			' Actually we have <strong>#{Coin.where(:active => true, :mainChain => true).count} main chain coins and
+			' </strong> and #{Coin.where(:active => true, :mainChain => false).count} merged mining coins.
+
+		p Chains table, see main and sec at Chain column:
+
+		== partial 'partials/coin-list'
+
+		p
+
+		p
+			' Mining power is <strong>automatically balanced</strong> between main chain coins, in order to maximize
+			' the probability of finding also a valid share for secondary coins and complete a block as soon as
+			| possible.
+
+		p
+			' Bear in mind that your power will only be divided among main chain coins, but it will be full for all
+			| secondary ones.
+
+		p
+			' The power distribution is automagically calculated due to an algorithm and looking for the best user
+			| profitability.
+
+		p
+			' <strong>You don't need to do anything</strong>, no coin choice, your power will be allocated
+			' automatically. Just make sure you <strong>get wallets for each coin</strong> in order to receive your
+			| rewards.
+
+		p
+			' For example, if you provide <strong>1Mhs</strong>, this will be the final power allocated:
+
+		== partial 'partials/power-table'
+
+	h3
+		i> class="fi-star"
+		| Fees
+
+	div class="text"
+
+		p
+			'Pool keeps a <strong>1% proportional fee</strong> of mining results, and a fixed transaction fee to send
+			| the rewards to the corresponding wallets.
+
+		table style="margin: 1em auto;"
+			thead
+				tr
+					th colspan="3" Fixed TX-Fee
+				tr
+					th Coin
+					th Symbol
+					th TX-Fee
+			tbody
+				- Coin.where(:active => true).each do |coin|
+					tr
+						td = coin.name
+						td class="calign #{coin.colorClass}" = coin.symbol
+						td.ralign = floatToHuman coin.txFee
+
+		p This info is also in the wallets section for your reference.

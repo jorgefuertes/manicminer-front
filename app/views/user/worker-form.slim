@@ -1,0 +1,33 @@
+/ worker-form.slim
+
+h1 = t 'pages.worker.new'
+
+= form_tag '/user/worker/add', {:'data-abide' => "", :id => "newWorkerForm"}
+	fieldset
+		legend
+			i class="fi-wrench"
+			|  #{t 'pages.worker.data'}
+		div class="row"
+			div class="small-12 columns"
+				== completeInputField :worker, 'text', 'name', {:required => true, :maxlenght => 50,
+					:pattern => "^[0-9a-zA-Z]{1,50}$"}
+				== completeRangeField(:worker, 'difficulty', 4, 5004, 4)
+		div class="field-note"
+			i> class="fi-lightbulb"
+			= t 'forms.worker.note'
+
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'
+
+- content_for :page_scripts
+	javascript:
+		$(document).ready(function() {
+			$('#difficulty-input').val(4);
+		});
+		$('[data-slider]').on('change', function(){
+			newValue = $('#difficulty-slider').attr('data-slider');
+			if(newValue > 3) {
+				$('#difficulty-input').val(newValue);
+			} else {
+				$('#difficulty-input').val('4');
+			}
+		});

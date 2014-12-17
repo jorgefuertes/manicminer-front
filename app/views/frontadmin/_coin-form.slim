@@ -1,0 +1,59 @@
+/ _coin-form.slim
+
+fieldset class="large-12 columns"
+	legend
+		i> class="fi-pencil"
+		= @coin.symbol
+	div class="row"
+		div class="large-5 columns"
+			== completeInputField 'coin', 'text', 'name', {:value => @coin.name}
+		div class="large-4 columns"
+			== completeInputField 'coin', 'text', 'symbol', {:value => @coin.symbol}
+		div class="large-3 columns"
+			== completeInputField 'coin', 'text', 'colorClass', {:value => @coin.colorClass}
+	div class="row"
+		div class="large-2 columns left"
+			== completeCheckBoxField 'coin', 'mainChain', @coin.mainChain
+		div class="large-1 columns left"
+			== completeCheckBoxField 'coin', 'active', @coin.active
+		div class="large-1 columns left"
+			== completeCheckBoxField 'coin', 'powerOn', @coin.powerOn
+		div class="large-1 columns left"
+			== completeCheckBoxField 'coin', 'getBlocks', @coin.getBlocks
+		div class="large-1 columns left"
+			== completeCheckBoxField 'coin', 'autoShare', @coin.autoShare
+		div class="large-2 columns left"
+			== completeCheckBoxField 'coin', 'integerOnly', @coin.integerOnly
+		div class="large-1 columns left"
+			== completeCheckBoxField 'coin', 'tradeOn', @coin.tradeOn
+	div class="row"
+		div class="large-4 columns"
+			== completeInputField 'coin', 'number', 'txFee', {:value => floatToHuman(@coin.txFee)}
+		div class="large-4 columns"
+			== completeInputField 'coin', 'number', 'blockValue', {:value => floatToHuman(@coin.blockValue)}
+		div class="large-2 columns left"
+			== completeInputField 'coin', 'number', 'confirms', {:value => @coin.confirms}
+	div class="row"
+		div class="large-6 columns"
+			== completeInputField 'coin', 'text', 'poolHost', {:value => @coin.poolHost}
+		div class="large-4 columns"
+			== completeInputField 'coin', 'number', 'poolPort', {:value => @coin.poolPort}
+		div class="large-2 columns"
+			== completeInputField 'coin', 'number', 'port', {:value => @coin.port}
+	div class="row"
+		div class="large-3 columns"
+			== completeInputField 'coin', 'text', 'rpcUser', {:value => @coin.rpcUser}
+		div class="large-3 columns"
+			== completeInputField 'coin', 'text', 'rpcPass', {:value => @coin.rpcPass}
+		div class="large-4 columns"
+			== completeInputField 'coin', 'text', 'rpcHost', {:value => @coin.rpcHost}
+		div class="large-2 columns"
+			== completeInputField 'coin', 'number', 'rpcPort', {:value => @coin.rpcPort}
+	div class="row"
+		div class="large-12 columns"
+			== completeInputField 'coin', 'url', 'blockExplorer', {:value => @coin.blockExplorer}
+	div class="row"
+		div class="large-6 columns"
+			== completeInputField 'coin', 'url', 'url', {:value => @coin.url}
+		div class="large-6 columns"
+			== completeInputField 'coin', 'url', 'urlWallets', {:value => @coin.urlWallets}

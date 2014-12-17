@@ -1,0 +1,114 @@
+/ general.slim
+
+- content_for :page_title
+	= t 'pages.statistics.general.title'
+
+div id="ajax-loader"
+	span class="text" = t 'titles.loading'
+	img src="/images/calc-loader.gif"
+
+section class="stats"
+	header
+		h1
+			= t 'pages.statistics.general.title'
+
+	table id="pool-use" class="large-12 columns"
+		thead
+			tr
+				th = t 'pages.statistics.general.poolUse'
+				th
+		tbody
+			tr
+				td = t 'pages.statistics.general.users'
+				td id="total_users" class="ralign" ---
+			tr
+				td = t 'pages.statistics.general.unconfirmed'
+				td id="unconfirmed_users" class="ralign zx-red" ---
+			tr
+				td = t 'pages.statistics.general.activeUsers'
+				td id="active_users" class="ralign zx-green" ---
+			tr
+				td = t 'pages.statistics.general.workers'
+				td id="total_workers" class="ralign" ---
+			tr
+				td = t 'pages.statistics.general.activeWorkers'
+				td id="active_workers" class="ralign zx-green" ---
+			tr
+				td = t 'pages.statistics.general.wallets'
+				td id="total_wallets" class="ralign" ---
+			tr
+				td = t 'pages.statistics.general.activeWallets'
+				td id="active_wallets" class="ralign" ---
+
+	table id="pool-power" class="large-12 columns"
+		thead
+			tr
+				th = t 'pages.statistics.general.poolPower'
+				th
+		tbody
+			tr
+				td = t 'pages.statistics.general.blocks'
+				td id="blocks" class="ralign" ---
+			tr
+				td
+					a href="/stats/charts/speed"
+						=> t 'pages.statistics.general.poolSpeed'
+						i class="fi-graph-bar"
+				td id="total_power" class="ralign zx-green" ---
+			tr
+				td = t 'pages.statistics.general.avgSpeed'
+				td id="avg_power" class="ralign zx-green" ---
+			tr
+				td = t 'pages.statistics.general.poolDeadSpeed'
+				td id="total_dead_power" class="ralign zx-red" ---
+
+	table id="users" class="large-12 columns"
+		thead
+			tr
+				th = t 'pages.statistics.general.topUsers'
+				th
+				th
+			tr
+				th = t 'pages.statistics.general.position'
+				th = t 'pages.statistics.general.user'
+				th class="ralign" = t 'pages.statistics.general.speed'
+		tbody
+			- (1..20).each do |num|
+				tr id="user-#{num}"
+					td class="position" = num
+					td class="username" ---
+					td class="speed ralign" ---
+
+- content_for :page_scripts
+	javascript:
+		$(document).ready(function() {
+			getStats();
+		});
+
+		function changeElement(selector, value) {
+			if($(selector).html().toString().trim() !== value) {
+				$(selector).html(value);
+				$(selector).effect("highlight", {color: 'orange'}, 1000);
+			}
+		}
+
+		function getStats() {
+			$.get(getBaseUrl() + '/statsapi/general.json', function(data) {
+				for(cell in data['totals']) {
+					id    = '#' + cell;
+					value = data['totals'][cell].toString().trim();
+					changeElement(id, value);
+				}
+
+				for(position in data['users']) {
+					id = "#user-" + position;
+					changeElement(id + ' .username', data['users'][position]['name']);
+					changeElement(id + ' .speed', data['users'][position]['speed']);
+				}
+				$('#ajax-loader').fadeOut(1000);
+			});
+		}
+
+		setInterval(function() {
+			getStats();
+		}, 1000 * 180);

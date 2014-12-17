@@ -1,0 +1,65 @@
+/* More LABELS colors
+
+.label, .alert-box
+	&.info
+		background-color: $c-info
+		border-color:     $c-info
+		text-shadow: 1px 1px rgb(49, 153, 197)
+		color: white
+	&.warning
+		background-color: $c-warning
+		border-color:     $c-warning
+		color: white
+	&.danger, &.error
+		background-color: $c-danger
+		border-color:     $c-danger
+		color: white
+	&.default, &.gray, &.grey
+		background-color: $c-default
+		border-color:     $c-default
+		color: white
+	&.primary, &.blue
+		background-color: $c-primary
+		border-color:     $c-primary
+		color: white
+	&.soft
+		background-color: rgba(0, 0, 0, .6)
+		border-color: #555
+		font-size: .88em
+		line-height: 1.1em
+	&.true
+		background-color: $zx-green
+		color: $zx-white-b
+		font-weight: bold
+
+.alert-box
+	font-size: .95em
+	padding-left: 1.4em
+	display: table
+	margin-top: 1em
+	i
+		padding-right: .4em
+		text-shadow: none
+		display: table-cell
+		font-size: 24px
+		vertical-align: middle
+	span.text
+		display: table-cell
+		vertical-align: middle
+		text-align: left
+		width: 100%
+
+.bool
+	&.true
+		color: green
+	&.false
+		color: red
+	&.box
+		color: white
+		padding: 0 8px
+		font-weight: bold
+		border-radius: 2px
+		&.true
+			background-color: $zx-green
+		&.false
+			background-color: $zx-red

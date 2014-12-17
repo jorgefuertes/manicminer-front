@@ -1,0 +1,48 @@
+/ payout-ok.slim
+
+h1 = t 'pages.wallet.transfer_ok'
+
+fieldset
+	legend
+		i class="fi-dollar-bill"
+		|  #{t 'pages.wallet.tx'}
+	table class="transactions-table small-12 columns"
+		thead
+			tr
+				th = t 'pages.transactions.date'
+				th = t 'pages.wallet.name'
+				th class="calign" = t 'pages.worker.coin'
+				th class="show-for-large-up" = t 'pages.transactions.address'
+				th class="ralign" = t 'pages.transactions.amount'
+				th class="ralign" = t 'pages.wallet.fee'
+				th = t 'pages.transactions.comments'
+		tbody
+			- tx = @payoutTrans
+			tr id="tx-#{tx.id}"
+				td = tx.created_at
+				td = tx.wallet ?  tx.wallet.name : '---'
+				td class="calign #{tx.coin ? tx.coin.colorClass : ''}" = tx.coin ? tx.coin.symbol : '---'
+				td class="show-for-large-up" = tx.dtnAddress
+				td class="ralign #{tx.amount > 0}" = floatToHuman tx.amount
+				td class="ralign #{tx.fee >= 0}" = floatToHuman tx.fee
+				td = tx.comments
+			- tx = @txFeeTrans
+			tr id="tx-#{tx.id}"
+				td = tx.created_at
+				td = tx.wallet ?  tx.wallet.name : '---'
+				td class="calign #{tx.coin ? tx.coin.colorClass : ''}" = tx.coin ? tx.coin.symbol : '---'
+				td class="show-for-large-up" = tx.dtnAddress
+				td class="ralign #{tx.amount > 0}" = floatToHuman tx.amount
+				td class="ralign #{tx.fee >= 0}" = floatToHuman tx.fee
+				td = tx.comments
+		tfoot
+			tr
+				td colspan="7"
+					p = t 'pages.wallet.tx_ref', :id => @payoutTrans.id
+
+h4 = t 'pages.wallet.tx_ref_attn', :id => @payoutTrans.id
+
+a href="/user/profile"
+	button class="radius success small left"
+		i> class="fi-check"
+		= t 'buttons.back'

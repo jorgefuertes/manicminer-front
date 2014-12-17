@@ -1,0 +1,61 @@
+/ show.slim
+
+h2
+	' Trade your
+	span class="#{wallet.coin.colorClass}" #{wallet.coin.symbol}
+	' wallet to
+	span class="#{getSymbolColor 'BTC'}" BTC
+
+div.panel
+	p
+		' You are about to trade
+		span> class="numbers-em"
+			strong #{floatToHuman funds}
+			span class="#{wallet.coin.colorClass} small" #{wallet.coin.symbol}
+		' coins into
+		span> class="numbers-em"
+			strong #{floatToHuman btc_total}
+			span class="#{getSymbolColor 'BTC'} small" BTC,
+		' at
+		strong> current lowest
+		' change of
+		span> class="numbers-em"
+			strong #{floatToHuman btc_rate}
+			span class="#{getSymbolColor 'BTC'} small" BTC,
+		| each unit.
+
+	p Please <strong>check</strong>, this operation cannot be undoned:
+	table
+		thead
+			tr
+				th colspan="2" Operation Bill
+		tbody
+			tr
+				th.ralign Wallet
+				td #{wallet.name}
+			tr
+				th.ralign Coin
+				td #{wallet.coin.name} (#{wallet.coin.symbol})
+			tr
+				th.ralign Amount
+				td #{floatToHuman funds} #{wallet.coin.symbol}
+			tr
+				th.ralign Current rate
+				td #{floatToHuman btc_rate} BTC
+			tr.remark
+				th.ralign Total BTC
+				td #{floatToHuman btc_total} BTC
+		tfoot
+			tr
+				td colspan="2"
+					strong> Operation code:
+					| #{cr_operation}
+
+a href="/user/wallet/trade-confirm/#{cr_operation}/#{wallet.id}"
+	button class="radius success"
+		i> class="fi-check"
+		| OK, trade it!
+a href="/user/profile"
+	button class="radius alert right"
+		i> class="fi-x"
+		| Cancel operation

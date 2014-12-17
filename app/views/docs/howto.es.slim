@@ -1,0 +1,156 @@
+- content_for :page_title
+	' Instrucciones de minado
+
+article class="doc"
+	h1 Cómo empezar
+
+	h3
+		i> class="fi-star"
+		| Crea una cuenta y un worker:
+
+	div class="text"
+		ul
+			li
+				' Regístrate
+				a> href="/register/user" aquí
+				| sólo necesitas un email.
+			li
+				' Crea un worker. Cuando conectes uno de tus mineros, por ejemplo el de la tarjeta gráfica de tu ordenador,
+				' lo identificarás con ese worker y así conocerás sus estadísticas y velocidad por separado. Cada worker
+				| mina una moneda principal a tu elección.
+
+	h3
+		i> class="fi-star"
+		| Descarga un software de minería:
+
+	div class="text"
+		ul
+			li: a href="http://ck.kolivas.org/apps/cgminer/" CGMiner para Linux/Windows
+			li: a href="http://spaceman.ca/cgminer/" CGMiner Mac OS X
+			li: a href="https://github.com/veox/sgminer" SGMiner
+			li: a href="http://bfgminer.org/" BFGMiner Linux/Windows
+			li: a href="https://bitcointalk.org/index.php?topic=55038.msg654850#msg654850" CPU Miner Mac/Linux/Windows
+			li: a href="https://bitcointalk.org/index.php?topic=167229.0" CUDA Miner Linux/Mac/Windows NVDIA
+
+	h3
+		i> class="fi-star"
+		| Configura tu minero:
+
+	div class="text"
+		p Ajustes recomendados para el protocolo Stratum:
+
+		ul
+			li
+				strong> stratum:
+				code stratum+tcp://pool.manicminer.in
+			li
+				strong> port:
+				code 3333
+			li
+				strong> usuario:
+				code miusuario.worker
+			li
+				strong> contraseña:
+				code cualquiera
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' Nosotros no asignamos contraseñas a los workers, si alguien quiere minar por ti imaginamos que estarás
+			| encantado de que lo haga. Si tu minero te obliga a poner una contraseña pon cualquier cosa y funcionará igual.
+
+	h3
+		i> class="fi-star"
+		| Pon el minero a picar:
+
+	div class="text"
+		p Ejemplos de línea de comandos:
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' <strong>RECUERDA</strong> que en GNU/Linux, OsX y otros UNIX, debes poner "./" delante del comando a ejecutar
+			' siempre que dicho comando se encuentre en directorio actual. Es una medida de seguridad que tienen típicamente
+			| todos los intérpetres de comandos de UNIX.
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' <strong>En Windows</strong> los programas podrían tener extension <em>.exe</em>. Añádela si es necesario.
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| CGMiner:
+			code class="block"
+				| cgminer --scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p cualquiera
+
+		p class="note"
+			i> class="fi-dislike"
+			' Últimamente parece que CGMiner está dando algunos problemas. Recomendamos utilizar otro como BFGMiner.
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| SGMiner:
+			code class="block"
+				| sgminer --scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p cualquiera
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| Minerd:
+			code class="block"
+				| minerd -a scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p cualquiera
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| BFGMiner:
+			code class="block"
+				| bfgminer --scrypt -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p cualquiera
+
+		fieldset
+			legend
+				i> class="fi-wrench"
+				| CUDAMiner:
+			code class="block"
+				| cudaminer -o stratum+tcp://pool.manicminer.in:3333 -u #{userWorkerExample} -p any
+
+	h3
+		i> class="fi-star"
+		| Crea los monederos para que te podamos enviar la moneda minada:
+
+	div class="text"
+		p
+			' Debes descargar el software correspondiente a las monedas que te interesen y activarlo. Estos monederos te
+			' darán una dirección que deberás registrar en el apartado <strong>monederos</strong> de tu cuenta.
+			== partial 'partials/coin-list'
+
+
+		p class="note"
+			i> class="fi-lightbulb"
+			' Todos tus workers minan todas las monedas a la vez, todas en el puerto: <code>3333</code>.
+
+	h3
+		i> class="fi-star"
+		| Ya estás en marcha:
+
+	div class="text"
+		p
+			' En la página de tu cuenta podrás ver si tus mineros están trabajando y sus velocidades aproximadas, calculadas
+			' según los shares enviados en los últimos minutos, independientemente de los que diga tu tarjeta que está
+			' haciendo.
+			| Es una velocidad calculada para todos por igual.
+
+		p
+			' Ahora deberías leer las
+			a href="/docs/mining" reglas de minado y recompensas
+			| .
+
+		p
+			' Si tienes alguna duda o alguna sugerencia sobre estas instrucciones, por favor prueba primero en el
+			a href="/forum" foro
+			' .
+			' También puedes contactar a través de nuestro
+			a href="/contact" formulario de contacto
+			| .
+
+		h4 Happy Minning!

@@ -1,0 +1,18 @@
+/ wallet-form.slim
+
+h1 = t 'pages.wallet.new'
+
+= form_tag '/user/wallet/add', {:'data-abide' => "", :id => "newWalletForm"}
+	fieldset
+		legend
+			i> class="fi-bitcoin"
+			= t 'pages.wallet.data'
+		div class="row"
+			div class="small-12 columns"
+				== completeInputField :wallet, 'text', 'name', {:required => true, :maxlenght => 50}
+				== completeInputField :wallet, 'text', 'address', {:required => true, :maxlenght => 255}
+				== completeInputField :wallet, 'number', 'payOn', {:required => false, :maxlenght => 255, :max => 50000}
+				== getLabelFor :wallet, :coin
+				= select_tag :coin, :collection => @coins, :fields => [:name, :symbol]
+
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'

@@ -1,0 +1,78 @@
+/ mining.es.slim
+
+- content_for :page_title
+	' Minado y recompensas
+
+article class="doc"
+	h1 Minado y recompensas
+
+	h3
+		i> class="fi-star"
+		| Así funciona todo
+
+	div class="text"
+
+		p
+			' En este momento tenemos <strong>#{Coin.where(:active => true, :mainChain => true).count} monedas de cadena
+			' principal</strong> y #{Coin.where(:active => true, :mainChain => false).count} monedas en minado
+			' combinado, no todas se pueden tener así ya que la moneda debe haber sido creada de forma que lo soporte.
+
+		p En la siguiente tabla puedes ver las que son de cadena principal (main) y las que no (sec):
+
+		== partial 'partials/coin-list'
+
+		p
+
+		p
+			' La potencia de minado es <strong>balanceada automáticamente</strong> entre estas cadenas principales para
+			' tener más posibilidades de encontrar un share válido también para las secundarias, y así romper un bloque
+			' en menos tiempo.
+
+		p
+			' De esta forma tienes la potencia dividida entre todas las monedas de cadena principal y completa en cada
+			' una de las secundarias.
+
+		p
+			' El reparto de potencia a través de las cadenas se hace automáticamente gracias a un algoritmo que busca el
+			' mayor beneficio de los usuarios.
+
+		p
+			' <strong>Tú no tienes que hacer nada</strong>, no es necesario seleccionar moneda, tu potencia se va a
+			' repartir automáticamente según estas reglas. Sólo tienes que <strong>crear los monederos correspondientes
+			' a cada moneda</strong> para que puedas recibir las recompensas.
+
+		p
+			' En resumen, si pones <strong>1Mhs de potencia</strong>, obtendrás aproximadamente la siguiente potencia
+			' real:
+
+		== partial 'partials/power-table'
+
+	h3
+		i> class="fi-star"
+		| Comisiones
+
+	div class="text"
+
+		p El pool se queda con una <strong>comisión del 1%</strong> de todo lo minado.
+
+		p
+			' Asimismo se descuenta una comisión por transferencia saliente que es fija por moneda, y que puedes ver en
+			' la siguiente tabla:
+
+		table style="margin: 1em auto;"
+			thead
+				tr
+					th colspan="3" Comisión por transferencia
+				tr
+					th Moneda
+					th Símbolo
+					th Comisión
+			tbody
+				- Coin.where(:active => true).each do |coin|
+					tr
+						td = coin.name
+						td class="calign #{coin.colorClass}" = coin.symbol
+						td.ralign = floatToHuman coin.txFee
+
+		p También tienes esta información junto a tus monederos, en la página de usuario.
+

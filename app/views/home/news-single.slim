@@ -1,0 +1,15 @@
+/ news-single.slim
+
+- content_for :page_title
+	= @post.title
+
+section class="news"
+	article class="post large-12 columns"
+		header
+			h3
+				i> class="fi-star"
+				a href="/news/#{@post.slug}" == @post.title
+		div class="panel body"
+			== RDiscount.new(@post.body).to_html
+		footer
+			p = t 'pages.news.published', :time => distance_of_time_in_words(@post.created_at, Time.now)

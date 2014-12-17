@@ -1,0 +1,17 @@
+/ news.slim
+
+- content_for :page_title
+	= t 'titles.news'
+
+section class="news"
+	h1 = t 'titles.news'
+	- Post.where(:locale => I18n.locale).order(:created_at.desc).each do |post|
+		article class="post large-12 columns"
+			header
+				h3
+					i> class="fi-star"
+					a href="/news/#{post.slug}" == post.title
+			div class="panel body"
+				== RDiscount.new(post.body).to_html
+			footer
+				p = t 'pages.news.published', :time => distance_of_time_in_words(post.created_at, Time.now)

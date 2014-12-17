@@ -1,0 +1,40 @@
+/ error.es.slim
+
+h2 Lo siento, se produjo un error
+
+div.panel
+	h3 class="change-alert" = errorText
+	p Datos de la operación
+	table
+		thead
+			tr
+				th colspan="2" Datos de la operación
+		tbody
+			tr
+				th.ralign Monedero
+				td #{wallet.name}
+			tr
+				th.ralign Moneda
+				td #{wallet.coin.name} (#{wallet.coin.symbol})
+			tr
+				th.ralign Cantidad
+				td #{floatToHuman funds}
+			tr
+				th.ralign Cambio actual
+				td #{floatToHuman btc_rate} BTC
+			tr
+				th.ralign BTC Total
+				td #{floatToHuman btc_total} BTC
+		tfoot
+			tr
+				td colspan="2" style="background-color: rgba(0, 0, 0, .2)"
+					strong> Código operación:
+					| #{cr_operation}
+
+	h4 Por favor, anota los datos y contacta con el soporte si es necesario.
+
+a href="/user/profile"
+	button class="radius alert right"
+		i> class="fi-x"
+		| Cancelar operación
+

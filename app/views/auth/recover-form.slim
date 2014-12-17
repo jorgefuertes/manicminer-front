@@ -1,0 +1,15 @@
+/ recover-form.slim
+
+- content_for :page_title
+	= t 'forms.recover.title'
+
+h2  = t 'forms.recover.title'
+
+= form_tag '/auth/pass/recover', {:'data-abide' => "", :id => "recoverForm"}
+	fieldset
+		legend
+			i> class="fi-lock"
+			= t 'forms.login.email.label'
+		== completeInputField :login, :email, 'email', {:required => true}
+
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'

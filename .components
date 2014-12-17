@@ -1,0 +1,10 @@
+---
+:orm: mongomapper
+:test: none
+:mock: none
+:script: jquery
+:renderer: slim
+:stylesheet: sass
+:namespace: ManicminerPool
+:migration_format: number
+:admin_renderer: slim

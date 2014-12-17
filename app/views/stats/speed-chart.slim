@@ -1,0 +1,70 @@
+/ speed-chart.slim
+
+section class="charts"
+	header
+		h2 = t 'pages.charts.speed.title'
+		tt = t 'pages.charts.updated', :time => Time.now.utc
+
+	article class="chart"
+		header
+			h3 = t 'pages.charts.speed.last_hour'
+			div id="speed-hour-chart-legend"
+		canvas id="speed-hour-chart" width="1093" height="400"
+		footer
+			p.title = t 'pages.charts.speed.legend'
+
+	article class="chart"
+		header
+			h3 = t 'pages.charts.speed.last_hours'
+			div id="speed-hours-chart-legend"
+		canvas id="speed-hours-chart" width="1093" height="400"
+		footer
+			p.title = t 'pages.charts.speed.legend'
+
+	article class="chart"
+		header
+			h3 = t 'pages.charts.speed.last_week'
+			div id="speed-week-chart-legend"
+		canvas id="speed-week-chart" width="1093" height="400"
+		footer
+			p.title = t 'pages.charts.speed.legend'
+
+	article class="chart"
+		header
+			h3 = t 'pages.charts.speed.last_month'
+			div id="speed-month-chart-legend"
+		canvas id="speed-month-chart" width="1093" height="400"
+		footer
+			p.title = t 'pages.charts.speed.legend'
+
+javascript:
+	$(document).ready(function() {
+		getStats();
+	});
+
+	function getStats() {
+		$.getJSON(getBaseUrl() + '/statsapi/charts/speed/last-minutes.json', function(data) {
+			var ctx = $('#speed-hour-chart').get(0).getContext("2d");
+			var hourSpeedChart = new Chart(ctx).Line(data);
+			legend(document.getElementById('speed-hour-chart-legend'), data);
+		});
+
+		$.getJSON(getBaseUrl() + '/statsapi/charts/speed/last-hours.json', function(data) {
+			var ctx = $('#speed-hours-chart').get(0).getContext("2d");
+			var hoursSpeedChart = new Chart(ctx).Line(data);
+			legend(document.getElementById('speed-hours-chart-legend'), data);
+		});
+
+
+		$.getJSON(getBaseUrl() + '/statsapi/charts/speed/last-week.json', function(data) {
+			var ctx = $('#speed-week-chart').get(0).getContext("2d");
+			var weekSpeedChart = new Chart(ctx).Line(data);
+			legend(document.getElementById('speed-week-chart-legend'), data);
+		});
+
+		$.getJSON(getBaseUrl() + '/statsapi/charts/speed/last-month.json', function(data) {
+			var ctx = $('#speed-month-chart').get(0).getContext("2d");
+			var monthSpeedChart = new Chart(ctx).Line(data);
+			legend(document.getElementById('speed-month-chart-legend'), data);
+		});
+	}

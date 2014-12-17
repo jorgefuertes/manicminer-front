@@ -1,0 +1,64 @@
+/ show.es.slim
+
+h2
+	' Cambiar tu monedero
+	span class="#{wallet.coin.colorClass}" #{wallet.coin.symbol}
+	' a
+	span class="#{getSymbolColor 'BTC'}" BTC
+
+div.panel
+	- if data_changed
+		h3 class="change-alert" = t 'pages.wallet.trade_changed'
+	p
+		' Estás a punto de cambiar
+		span> class="numbers-em"
+			tt #{floatToHuman funds}
+			span class="#{wallet.coin.colorClass} small" #{wallet.coin.symbol}
+		' por
+		span> class="numbers-em"
+			tt #{floatToHuman btc_total}
+			span class="#{getSymbolColor 'BTC'} small" BTC
+		' al
+		strong> cambio mínimo
+		' actual de
+		span> class="numbers-em"
+			tt #{floatToHuman btc_rate}
+			span class="#{getSymbolColor 'BTC'} small" BTC
+		| cada unidad.
+
+	p Por favor <strong>comprueba</strong>, esta operación no se puede revertir:
+	table
+		thead
+			tr
+				th colspan="2" Datos de la operación
+		tbody
+			tr
+				th.ralign Monedero
+				td #{wallet.name}
+			tr
+				th.ralign Moneda
+				td #{wallet.coin.name} (#{wallet.coin.symbol})
+			tr
+				th.ralign Cantidad
+				td #{floatToHuman funds}
+			tr
+				th.ralign Cambio actual
+				td #{floatToHuman btc_rate} BTC
+			tr.remark
+				th.ralign BTC Total
+				td #{floatToHuman btc_total} BTC
+		tfoot
+			tr
+				td colspan="2"
+					strong> Código operación:
+					| #{cr_operation}
+
+a href="/user/wallet/trade-confirm/#{cr_operation}/#{wallet.id}"
+	button class="radius success"
+		i> class="fi-check"
+		| OK, cambiar!
+a href="/user/profile"
+	button class="radius alert right"
+		i> class="fi-x"
+		| Cancelar operación
+

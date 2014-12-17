@@ -1,0 +1,8 @@
+/ coin-edit.slim
+
+h2 Edit #{@coin.name}
+
+= form_tag "/frontadmin/coins/edit/#{@coin.id}", {:'data-abide' => "", :id => "editCoinForm"}
+	== partial 'frontadmin/coin-form'
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'
+	a class="button alert radius right" href="/frontadmin/coins" = t 'buttons.cancel'

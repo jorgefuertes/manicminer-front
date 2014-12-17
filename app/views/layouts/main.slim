@@ -1,0 +1,75 @@
+doctype 5
+<!--[if IE 9]><html class="lt-ie10 oldie" lang="en" > <![endif]-->
+
+html
+    head
+        / METADATA
+        meta charset="utf-8"
+        meta name="viewport" content="width=device-width, initial-scale=1.0"
+    	meta name="description" content="#{t 'meta.description'}"
+    	meta name="keywords" content="#{t 'meta.keywords'}"
+        = csrf_meta_tags
+        link type="text/plain" rel="author" href="humans.txt"
+        / FAVICON
+    	link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon"
+        / TITLE
+        title = yield_content :page_title
+        / CSS
+        link rel="stylesheet" href="/foundation/css/normalize.css"
+        link rel="stylesheet" href="/foundation/css/foundation.css"
+        link rel="stylesheet" href="/foundation/icons/foundation-icons.css"
+    	link rel="stylesheet" href="/stylesheets/front.css?v=244"
+        / FONTS
+        link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700'
+        / JQUERY LOAD
+        javascript:
+            var oldieCheck = Boolean(document.getElementsByTagName('html')[0].className.match(/soldies/g));
+            if(!oldieCheck) {
+                document.write("<script src=\"//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js\"></script>");
+            } else {
+                document.write("<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\"></script>");
+            }
+        javascript:
+            if(!window.jQuery) {
+                if(!oldieCheck) {
+                    document.write("<script src=\"/javascripts/libs/jquery-2.0.3.min.js\"></script>");
+                } else {
+                    document.write("<script src=\"/javascripts/libs/jquery-1.10.2.min.js\"></script>");
+                }
+            }
+        / JAVASCRIPT
+        script src="/foundation/js/modernizr.js?v=500"
+        script src="/javascripts/jquery-ui-1.10.4.custom.min.js"
+        script src="/foundation/js/foundation/foundation.js?v=500"
+        script src="/foundation/js/foundation/foundation.alert.js?v=500"
+        script src="/foundation/js/foundation/foundation.abide.js?v=500"
+        script src="/foundation/js/foundation/foundation.reveal.js?v=500"
+        script src="/foundation/js/foundation/foundation.tooltip.js?v=500"
+        script src="/foundation/js/foundation/foundation.topbar.js?v=500"
+        script src="/foundation/js/foundation/foundation.slider.js?v=500"
+        script src="/javascripts/Chart.min.js"
+        script src="/javascripts/application.js?v=510"
+        / FOUNDATION INIT
+    body
+        section id="page"
+            == partial 'partials/header'
+            section id="content"
+                == flashSection
+                == yield
+            == partial 'partials/footer'
+
+        javascript:
+            $(document).foundation();
+            $(document).ready(function(){
+                $('.fadeout').fadeOut(30000);
+
+                $("#coin-ticker-ul").liScroll();
+                setInterval(function() {
+                    updateTicker();
+                }, 1000 * 300);
+            });
+
+        - if Padrino.env == :production
+            == partial 'partials/piwik'
+
+        = yield_content :page_scripts

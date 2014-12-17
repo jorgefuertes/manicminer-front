@@ -1,0 +1,32 @@
+/ backup-show.slim
+
+h3 Backup details
+
+table class="large-12 columns"
+	tbody
+		tr
+			th Time
+			td = bk.created_at
+		tr
+			th Kind
+			td = bk.kind
+		tr
+			th Name
+			td = bk.name
+		tr
+			th Path
+			td = bk.path
+		tr
+			th Size
+			td = bytesToHuman bk.size
+		tr
+			th OK
+			td class="#{bk.completed}" == boolToHuman bk.completed
+		tr
+			th Log
+			td.small
+				pre = bk.log
+
+a class="button info radius" href="/frontadmin/backups"
+	i> class="fi-arrow-left"
+	| Go back

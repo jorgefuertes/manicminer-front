@@ -1,0 +1,481 @@
+# en.yml
+
+en:
+    welcome: Welcome
+    site:
+        title:  The ManicMiner
+        name:   ManicMiner.in
+        slogan: When the miners made their own picks
+    meta:
+        description: Cryptocurrency merged mining pool
+        keywords: 'Mining, cryptocurrency, pesetacoin, merged-mining, dogecoin, litecoin, bitcoin, scrypt'
+    auth:
+        login:
+            title: Access information
+            error: Access denied
+            locked: Locked account
+        logout: You have been disconnected
+    bool:
+        'true':  'yes'
+        'false': 'no'
+    buttons:
+        send:          Send
+        register:      Register
+        sendwithrules: Register
+        menu:          Menu
+        ok:            OK
+        cancel:        Cancel
+        confirm:       Confirm
+        back:          Back
+    titles:
+        about:         About
+        help_docs:     Help & Docs
+        policy:        Legal Warning
+        login:         Login
+        logout:        Logout
+        myprofile:     My account
+        youraccount:   Your account
+        howto:         Instructions
+        statistics:    Statistics
+        lastblocks:    Last blocks
+        generalStats:  General
+        contact:       Contact us
+        languages:     Languages
+        transactions:  Transactions
+        coins:         Coins info
+        loading:       Loading
+        rules:         Mining and shares
+        news:          News
+        profits:       Profits
+        power_table:   Power and profits
+        changes_table: Exchange table
+        ticker:
+            title: Exchanges
+            date:  Exchanges at %{date}
+            min:   min
+            avg:   avg
+        contact_and_support: Contact & Support
+    alerts:
+        email-confirm:
+            ok:          Your email has been confirmed. Thanks.
+            already:     Your account was already confirmed.
+            notfound:    The token could not be found, or it has expired.
+            unconfirmed: Your account is not activated yet. You will not be able to mine if you do not activate it.
+        user:
+            deactivated: This account is deactivated.
+            notfound: Sorry, we did not find any users with this information.
+        recoverSend: Instructions sent to your email.
+        nodata: No data at this moment, sorry
+        retry: Please, retry in a few minutes
+
+    email:
+        welcome: Welcome to ManicMiner.in
+        recover: Password recovery in ManicMiner.in
+
+    forms:
+        post:
+            index: News admin
+            new: New post
+            locale:
+                label: Language
+            title:
+                label: Title
+            slug:
+                label: Slug
+                tip: /news/post/your-slug
+            body:
+                label: Text
+            saved: Post has been published
+            errors:
+                save: Cannot save the post
+        login:
+            title: Access to ManicMiner
+            email:
+                label: Email
+                tip:   The email you registered with
+                error: Please, enter a valid email address
+            password:
+                label: Password
+                tip:   Your password. If you have forgotten it use the URL below.
+                error: Insert your password
+            forgot: Forgotten password
+        contact:
+            title: Contact form
+            email:
+                label: Email
+                tip:   Email where we will answer you at
+                error: Please, enter a valid email address
+            subject:
+                label: Topic
+                tip:   Topic you want to contact us about
+                error: Insert a topic
+            text:
+                label: Your message
+                tip:   Explain us what you want.
+                error: You have to write something.
+            note: Please, explain your issue as clearly as you can.
+        recover:
+            title: Recover password
+        registration:
+            email:
+                label: Email
+                tip:   Your email
+                error: Insert a valid email
+            password:
+                label: Password
+                tip:   Your password.
+                error: Between 5 and 50 characters
+            password_confirmation:
+                label: Repeat password
+                tip:   The same password you entered in the previous field
+                error: Passwords must match
+            name:
+                label: Username
+                tip:   Your nick or username. The one you want without spaces or signs.
+                error: Only letters or numbers, without spaces, between 4 and 50 characters
+            errors:
+                save: It could not be saved!
+        passwordEdit:
+            oldPassword:
+                label: Existing password
+                tip:   The password you have used so far
+                error: Between 5 and 50 characters.
+            password:
+                label: New password
+                tip:   A new password you choose.
+                error: Between 5 and 50 characters
+            password_confirmation:
+                label: Repeat new password
+                tip:   The same password you iserted in the other field
+                error: Las contraseñas deben coincidir
+            ok: Password changed correctly
+            errors:
+                badpass: Incorrect password
+                match:   The new passwords do not match
+                save:    The new password could not be saved
+        worker:
+            name:
+                label: Worker's name
+                tip: >
+                    A descriptive name, without spaces, between 1 and 50 characters. We will add your username as a
+                    prefix.
+                error: Only letters and numbers, without spaces, between 1 and 50 characters
+            difficulty:
+                label: Difficulty
+                tip:   'Difficulty you want this worker to work at. Recommended: Khs/10'
+                error: Only integers
+            errors:
+                save: The worker could not be saved!
+            note: Recommended difficulty (Speed Khs / 10)
+        wallet:
+            name:
+                label: Wallet name
+                tip:   A descriptive name, between 1 and 50 characters.
+                error: Fill in the wallet's name
+            address:
+                label: Wallet ddress
+                tip:   The address you find at the 'receive' section in your wallet
+                error: Fill in your wallet's address
+            payOn:
+                label: Automatic payout
+                tip:   If you insert a quantity it will be automatically paid when your balance is greater.
+                error: Number as 1 or 0.166, maximum 5000.
+            coin:
+                label: Coin
+                tip:   The coin for this wallet.
+            errors:
+                save: The wallet could not be saved!
+        coin:
+            name:
+                label: Name
+                error: Required
+            symbol:
+                label: Symbol
+                error: Required
+            active:
+                label: Activated
+                error: YES/NO
+            getBlocks:
+                label: Blocks
+                error: YES/NO
+            autoShare:
+                label: Share
+                error: YES/NO
+            blockValue:
+                label: Block Value
+                error: Required
+            colorClass:
+                label: Color Class
+                error: Required
+            confirms:
+                label: Confirmations
+                error: Required
+            integerOnly:
+                label: Integer Only
+                error: YES/NO
+            mainChain:
+                label: Main Chain
+                error: YES/NO
+            poolHost:
+                label: Pool host
+                error: IP o hostname
+            poolPort:
+                label: Pool port
+                error: Número
+            port:
+                label: Mining port
+                error: Número
+            rpcHost:
+                label: RPC host
+                error: IP o hostname
+            rpcPort:
+                label: RPC port
+                error: Número
+            rpcUser:
+                label: RPC user
+                error: User name
+            rpcPass:
+                label: RPC pass
+                error: Password
+            txFee:
+                label: TX Fee
+                error: Float
+            url:
+                label: Coin homepage
+                error: URL
+            urlWallets:
+                label: Wallet downloads
+                error: URL
+            blockExplorer:
+                label: Block Explorer
+                error: URL
+            powerOn:
+                label: Power
+                error: YES/NO
+            tradeOn:
+                label: Trade
+                error: YES/NO
+    pages:
+        news:
+            published: Published %{time}
+        contact:
+            sended: Sent. We will answer you as soon as possible.
+            unauthorized: Sorry, you must be registered to contact us.
+        register:
+            title: Miner registration
+            data: Access data
+            ok:
+                title: You have succesfully registered!
+                text: >
+                    We have registered your user and password, but to be able to access your account you must
+                    <strong>activate it using the URL we have sent to your email</strong>.
+            resend:
+                link: Resend activation mail
+                header: Activation link sended
+                body: >
+                    An activation email has been sent to your registered email account. Please, check your SPAM folder.
+        profile:
+            mydata:        User's information
+            workers:       Workers
+            workersCount:  '%{count} workers'
+            running:       '%{count} mining'
+            wallets:       Wallets
+            walletsCount:  '%{count} wallets'
+            passwordEdit:  Change
+            active:        Running
+            nonedit:       You can't edit a running worker
+            missingWallets: 'You should also create wallets for: %{list}.'
+            help: Help
+            workersTip: >
+                The workers are your miners. The mining programs at your computer. Their power is shared automatically
+                across the main-chain coins as you can see at the mining info page.
+            walletsTip: >
+                You have a wallet for each coin we are mining. You will configure the external wallet's address as
+                we can send you the mining rewards. You have a NON mining Bitcoin (BTC) wallet, here we put the
+                trading results if you want to trade any of the mined coins.
+            tradingResults: Trading Results
+            tradingResultsTip: >
+                Here you have the results of your trading operations. You can trade any of the other coins to Bitcoin.
+                *** UNDER DEVELOPMENT ***
+        worker:
+            new: New worker
+            add: Add worker
+            data: Worker's information
+            saved: New worker created
+            updated: Worker updated
+            name: Worker
+            difficulty: Difficulty
+            speed: Speed
+            active: Active
+            deleted: The worker has been deleted
+            notfound: The worker can not be found!
+            coin: Currency
+            shares: ok(5m)
+            dead: NOOK
+            edit: Edit worker
+            port: Port
+        wallet:
+            new: New wallet
+            add: Add wallet
+            data: Wallet information
+            saved: New wallet created
+            updated: Wallet updated
+            name: Wallet
+            deleted: Wallet has been deleted
+            notfound: Wallet can not be found!
+            address: Address
+            coin: Currency
+            confirmed: Balance
+            unconfirmed: Unconfirmed
+            edit: Edit wallet
+            payOn: Auto Payout
+            activate: Activate
+            onlyOneActive: You can only activate one wallet for each currency
+            fee: Fee
+            btc_value: BTC Value
+            btc_total: Total estimated value
+            payout: Manual payout
+            tx: Transfer
+            transfer_ok: Transfer succesful!
+            transfer_fail: Sorry, transfer has failed
+            tx_ref: 'Your transaction ID is: %{id}'
+            tx_fail: Transaction Fail
+            tx_ref_attn: 'Please take note of your transaction ref: %{id}'
+            autotrade: Trade to BTC
+            trade_ok: Trade succesful!
+            trade_changed: Your funds or the BTC rate has changed, please recheck data
+            nochange: Sorry, no change data at this momment. Try later.
+            nofunds: Sorry, no funds in your wallet.
+        coin:
+            title:   Coins and links
+            wallets: Wallets
+            symbol:  Symbol
+            name:    Name
+            info:    Homepage
+            link:    Link
+            count:   '%{count} coins at the moment'
+            chain:   Chain
+            main:    main
+            sec:     sec
+            trend:   Trend
+        password:
+            edit: Change password
+        statistics:
+            blocks:
+                title: Last solved blocks
+                hour: UTC time
+                hash: Hash
+                coin: Currency
+                confirms: Confirm
+                amount: Amount
+            general:
+                title: General statictics
+                poolUse: Pool usage
+                users: Users
+                unconfirmed: Unconfirmed users
+                user: User
+                workers: Workers
+                wallets: Wallets
+                poolPower: Pool power
+                poolSpeed: Pool speed OK
+                avgSpeed: Average pool speed OK
+                poolDeadSpeed: Pool speed NOOK
+                blocks: Solved blocks
+                topUsers: Fastest miners
+                speed: Speed
+                position: Position
+                activeUsers: Active users now
+                activeWorkers: Active workers now
+                activeWallets: Active wallets
+            profits:
+                title:       Profits statistics
+                estimates:   Earnings estimate for 1Mhs
+                symbol:      Coin
+                chain:       Chain
+                block_value: Blk value
+                reward:      Reward
+                btc_value:   BTC/1
+                btc_reward:  BTC Reward
+                updated:     Updated hourly
+                footer: >
+                    All values ​​are estimates and are calculated every hour. Profits would be for 24h with 1Mhs power.
+                btc_estimated: Total BTC estimated
+                last_rate: Last rate
+                low_rate: Lowest rate
+        transactions:
+            tile:         Transactions
+            last:         Last transactions
+            date:         Date
+            comments:     Comments
+            amount:       Amount
+            count:        '%{count} transactions'
+            address:      Address
+            view:         View all
+            coinNotFound: Coin not found
+            filter:
+                coin:
+                    label: Coin Filter
+                type:
+                    label: Type Filter
+                    in:    IN
+                    out:   OUT
+            allCoins:     All
+        charts:
+            min: Minimum
+            max: Maximum
+            avg: Average
+            updated: Updated at %{time}
+            speed:
+                title:      Speed charts
+                last_hours: Last 24h
+                last_hour:  Last hour
+                last_week:  Last 7 days
+                last_month: Last 30 days
+                legend:     Speed in Mhs, UTC hours.
+        error:
+            sorry:    I'm sorry!
+            contact:  Contact support
+            return:   Return to home
+    twitter:
+        more: more
+
+    mongo_mapper:
+        errors:
+            models:
+                user:
+                    attributes:
+                        email:
+                            taken: This email is already registered
+                        name:
+                            taken: This username is already registered
+                wallet:
+                    attributes:
+                        address:
+                            taken: This wallet is already registered
+                worker:
+                    attributes:
+                        name:
+                            taken: Worker name already taken
+                        difficulty:
+                            min: Minimum diffculty is 1
+                            max: Maximum diffculty is 1000
+                post:
+                    attributes:
+                        slug:
+                            taken: Slug already taken
+
+    locales:
+        en: English
+        es: Spanish
+
+    modals:
+        wallet:
+            delete:
+                title: You are about to delete a wallet
+                text: Are you sure?
+                ok: Yes, delete wallet
+        worker:
+            delete:
+                title: You are about to delete a worker
+                text: Are you sure to delete?
+                ok: Yes, delete worker

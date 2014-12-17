@@ -1,0 +1,11 @@
+/ changes-table.slim
+
+- content_for :page_title
+	= t 'titles.changes_table'
+
+article class="doc"
+	h3
+		i> class="fi-star"
+		= t 'titles.changes_table'
+
+	== partial 'partials/changes-table'

@@ -1,0 +1,19 @@
+/ error_email.slim
+
+h2 Error report
+
+ul style="margin: 2em .4em;"
+	- report.each do |key, value|
+		- if key != :trace
+			li
+				strong = key
+				' :
+				= value
+
+h4 Trace:
+div.code style="font-family: Menlo, Monaco, monospace; font-size: .8em;"
+	- report[:trace].each do |line|
+		= line
+		br
+
+h4 EOF

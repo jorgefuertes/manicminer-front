@@ -1,0 +1,22 @@
+/ _changes-table.slim
+
+table class="coin-list" style="margin: auto;"
+	thead
+		tr
+			th = t 'pages.statistics.profits.symbol'
+			th = t 'pages.coin.name'
+			th class="ralign" = t 'pages.statistics.profits.last_rate'
+			th class="ralign" = t 'pages.statistics.profits.low_rate'
+			th class="show-for-medium-up calign" = t 'pages.coin.trend'
+			th Exchange
+	tbody
+		- Coin.where(:active => true).where(:symbol.ne => 'BTC').each do |coin|
+			- lastRate   = getCacheBtcLastRate(coin)
+			- lowestRate = getCacheBtcLowestRate(coin)
+			tr
+				td class="#{getSymbolColor coin.symbol}" = coin.symbol
+				td = coin.name
+				td class="lalign zx-green" = lastRate ? floatToHuman(lastRate) : '---'
+				td class="lalign zx-green" = lowestRate ? floatToHuman(lowestRate) : '---'
+				td class="show-for-medium-up calign" == getCoinTrendingIcon coin
+				td = getCacheExchange(coin)

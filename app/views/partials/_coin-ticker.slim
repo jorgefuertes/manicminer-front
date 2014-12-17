@@ -1,0 +1,23 @@
+/ _coin-ticker.slim
+
+div id="coin-ticker" class="tickercontainer show-for-large-up large-12 columns"
+	div class="content"
+		ul id="coin-ticker-ul" class="newsticker"
+			- Coin.where(:active => true).where(:symbol.ne => 'BTC').each do |coin|
+				li class="coin-#{coin.id}"
+					span class="coin"
+						span> class="separator" •
+						span> class="name" = coin.name
+						span> class="symbol small zx-red" = coin.symbol
+						span class="zx-yellow small" = t 'titles.ticker.min'
+						span class="btc_rate" = floatToHuman getCacheBtcLowestRate(coin)
+						| /
+						span class="zx-yellow small" = t 'titles.ticker.avg'
+						span class="btc_rate" = floatToHuman getCacheBtcLastRate(coin)
+						span> class="orange small" BTC
+						- trend = getCoinTrending(coin)
+						- icon = 'fi-arrow-up zx-green' if trend == '+'
+						- icon = 'fi-pause zx-blue' if trend == '='
+						- icon = 'fi-arrow-down zx-red' if trend == '-'
+						i> class="trend #{icon}"
+						span> class="separator" •

@@ -1,0 +1,18 @@
+/ login.slim
+
+- content_for :page_title
+	' Login
+
+section id="login" class="large-12 columns"
+	h2 class="text-center" = t 'forms.login.title'
+
+	= form_tag '/auth/login', {:'data-abide' => "", :id => "loginForm"}
+		fieldset
+			legend
+				i> class="fi-lock"
+				= t 'auth.login.title'
+			== completeInputField :login, :email, 'email', {:required => true}
+			== completeInputField :login, :password, 'password', {:required => true, :pattern => "^.{5,50}$"}
+
+		button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'
+		a class="forgot button info radius" href="/auth/pass/recover" = t 'forms.login.forgot'

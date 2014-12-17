@@ -1,0 +1,21 @@
+/ contact-form.slim
+
+- content_for :page_title
+	= t 'forms.contact.title'
+
+h1 = t 'forms.contact.title'
+
+= form_tag '/contact', {:'data-abide' => "", :id => "contactForm"}
+	fieldset
+		legend
+			i> class="fi-mail"
+			= t 'titles.contact'
+		div class="row"
+			div class="small-12 columns"
+				== completeInputField :contact, 'text', 'subject', {:required => true, :maxlenght => 50}
+				== completeTextArea   :contact, 'text', {:required => true,	:minlenght => 10, :maxlenght => 4000}
+		div class="note"
+			i> class="fi-lightbulb"
+			= t 'forms.contact.note'
+
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'

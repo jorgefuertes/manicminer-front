@@ -1,0 +1,31 @@
+- error = @worker.errors.include?(:user_id)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :user_id, :class => 'control-label'
+  div class='controls'
+    = f.text_field :user_id, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    span class='help-inline' = error ? f.error_message_on(:user_id, :class => 'text-error') : pat(:example)
+- error = @worker.errors.include?(:name)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :name, :class => 'control-label'
+  div class='controls'
+    = f.text_field :name, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+- error = @worker.errors.include?(:difficulty)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :difficulty, :class => 'control-label'
+  div class='controls'
+    = f.text_field :difficulty, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:difficulty, :class => 'text-error') : pat(:example)
+- error = @worker.errors.include?(:seenAt)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :seenAt, :class => 'control-label'
+  div class='controls'
+    = f.text_field :seenAt, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:seenAt, :class => 'text-error') : pat(:example)
+
+div class="form-actions"
+  = f.submit pat(:save), :class => 'btn btn-primary'
+  |&nbsp;
+  = f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  |&nbsp;
+  = link_to pat(:cancel), url(:workers, :index), :class => 'btn btn-default'

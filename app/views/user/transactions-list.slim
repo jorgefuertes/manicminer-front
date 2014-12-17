@@ -1,0 +1,59 @@
+/ transactions-list.slim
+
+- content_for :page_title
+	= t 'titles.transactions'
+
+fieldset
+	legend
+		i> class="fi-dollar-bill"
+		== page_entries_info @transactions
+	div class="filters"
+		dl class="sub-nav"
+			dt #{t 'pages.transactions.filter.coin.label'}:
+			- Coin.where(:active => true).each do |coin|
+				- if coin.symbol == @symbol
+					dd class="#{coin.colorClass} active"
+						a href="/user/transactions/#{coin.symbol}/#{@type}" #{coin.symbol}
+				- else
+					dd class="#{coin.colorClass}"
+						a href="/user/transactions/#{coin.symbol}/#{@type}" #{coin.symbol}
+			dd class="all #{'active' if @symbol == 'all'}"
+				a href="/user/transactions/all/#{@type}" = t 'pages.transactions.allCoins'
+
+		dl class="sub-nav"
+			dt #{t 'pages.transactions.filter.type.label'}:
+			dd class="true in #{'active' if @type == 'in'}"
+				a href="/user/transactions/#{@symbol}/in" = t 'pages.transactions.filter.type.in'
+			dd class="false out #{'active' if @type == 'out'}"
+				a href="/user/transactions/#{@symbol}/out" = t 'pages.transactions.filter.type.out'
+			dd class="all #{'active' if @type == 'all'}"
+				a href="/user/transactions/#{@symbol}/all" = t 'pages.transactions.allCoins'
+
+	div class="pagination"
+		== will_paginate @transactions
+	table class="transactions-table small-12 columns"
+		thead
+			tr
+				th = t 'pages.transactions.date'
+				th = t 'pages.wallet.name'
+				th class="calign" = t 'pages.worker.coin'
+				th class="show-for-large-up" = t 'pages.transactions.address'
+				th class="ralign" = t 'pages.transactions.amount'
+				th class="ralign" = t 'pages.wallet.fee'
+				th = t 'pages.transactions.comments'
+		tbody
+			- @transactions.each do |tx|
+				tr id="tx-#{tx.id}"
+					td = tx.created_at
+					td = tx.wallet ?  tx.wallet.name : '---'
+					td class="calign #{tx.coin ? tx.coin.colorClass : ''}" = tx.coin ? tx.coin.symbol : '---'
+					td class="show-for-large-up" = tx.dtnAddress
+					td class="ralign #{tx.amount > 0}" = floatToHuman tx.amount
+					td class="ralign #{tx.fee >= 0}" #{noFloatZero tx.fee}
+					td = tx.comments
+		tfoot
+			tr
+				td colspan="7"
+					p #{t 'pages.transactions.count', :count => current_account.transactions.count}
+	div class="pagination right"
+		== will_paginate @transactions

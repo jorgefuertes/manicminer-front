@@ -1,0 +1,39 @@
+/ _power-table.slim
+
+table class="coin-list" style="margin: auto;"
+	thead
+		tr
+			th = t 'pages.statistics.profits.symbol'
+			th class="ralign" % Power
+			th class="ralign" Hash Pow.
+			th class="show-for-medium-up calign" = t 'pages.coin.trend'
+			th class="calign" = t 'pages.statistics.profits.chain'
+			th class="ralign" = t 'pages.statistics.profits.block_value'
+			th class="ralign" = t 'pages.worker.difficulty'
+			th class="ralign" = t 'pages.statistics.profits.reward'
+			th class="ralign" = t 'pages.statistics.profits.btc_reward'
+	tbody
+		- btc_total = 0
+		- getPowerTable().reverse.each do |symbol, data|
+			- btc_total += data[:btc_reward]
+			tr
+				td class="#{getSymbolColor symbol}" = symbol
+				td class="ralign" #{floatToHuman data[:power_percent]}%
+				td class="ralign" == hashesToHuman data[:power_khs]
+				td class="show-for-medium-up calign" == getCoinTrendingIcon symbol
+				td class="calign #{data[:main_chain]}" #{data[:main_chain] ? 'main' : 'sec'}
+				td class="ralign gray" = floatToHuman data[:block_value]
+				td class="ralign gray" = floatToHuman data[:difficulty]
+				td class="ralign zx-blue" = floatToHuman data[:reward]
+				td class="ralign zx-green" = (data[:btc_reward] > 0) ? floatToHuman(data[:btc_reward]) : '---'
+	tfoot
+		tr
+			td colspan="9" class="ralign"
+				i> class="fi-bitcoin"
+				=> t 'pages.statistics.profits.btc_estimated'
+				= btc_total.round(8)
+				span class="orange" BTC
+		tr
+			td colspan="9" class="ralign"
+				i> class="fi-info"
+				= t 'pages.statistics.profits.footer'

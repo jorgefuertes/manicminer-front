@@ -1,0 +1,16 @@
+div id="running-worker-html" class="hide"
+	== tooltipLabel('pages.profile.active', 'pages.profile.nonedit')
+div id="non-running-worker-html" class="hide"
+	a href="#" onclick="deleteWorker('#ID');"
+		i class="fi-trash link-icon"
+	a href="/user/worker/edit/#ID"
+		i class="fi-pencil link-icon"
+
+div id="delete-worker-modal" class="reveal-modal medium hide" data-reveal=""
+	h3 == t 'modals.worker.delete.title'
+	p  == t 'modals.worker.delete.text'
+	a href="/user/worker/delete/#ID"
+		button class="round alert left"
+			= t 'modals.worker.delete.ok'
+	button class="round success right" onclick="$('#delete-worker-modal').foundation('reveal', 'close');"
+		= t 'buttons.cancel'

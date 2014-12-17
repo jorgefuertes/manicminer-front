@@ -1,0 +1,39 @@
+/ news-index.slim
+
+h1 = t 'forms.post.index'
+
+fieldset
+	legend
+		i> class="fi-megaphone"
+		| Posts
+
+	table class="news-list large-12 columns"
+		thead
+			tr
+				th Locale
+				th Date
+				th Title
+				th Body
+				th Author
+				th
+		tbody
+			- Post.find_each do |post|
+				tr
+					td = post.locale
+					td = post.created_at
+					td = post.title
+					td = post.body[0..49]
+					td = post.user.name
+					td class="actions"
+						a href="/frontadmin/news/post/delete/#{post.id}"
+							i class="fi-trash link-icon"
+						a href="/frontadmin/news/post/edit/#{post.id}"
+							i class="fi-pencil link-icon"
+		tfoot
+			tr
+				td colspan="6"
+					p #{Post.count} posts.
+					a href="/frontadmin/news/post/add"
+						button class="radius small"
+							i> class="fi-plus"
+							| New post

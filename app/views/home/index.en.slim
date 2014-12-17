@@ -1,0 +1,76 @@
+/ index.slim
+
+- content_for :page_title
+	= t 'site.name'
+	': Cryptocoin Merged Mining Pool
+
+section#welcome
+	header
+		h2 Welcome to the community of intelligent miners
+
+	div.row
+		div class="large-6 small-12 columns home-left"
+			div.row
+				- if current_account.nil?
+					a class="button radius alert large-12 columns" href="/register/user"
+						h4 class="zx-white-b"
+							i> class="fi-page-edit"
+							| REGISTER
+					a class="button radius success large-12 columns" href="/auth/login"
+						h4 class="zx-white-b"
+							i> class="fi-torso"
+							| LOGIN
+				- else
+					a class="button radius success large-12 columns" href="/auth/login"
+						h4 class="zx-white-b"
+							i> class="fi-home"
+							| WELCOME #{current_account.name}
+					a class="button radius alert large-12 columns" href="/auth/logout"
+						h4 class="zx-white-b"
+							i> class="fi-foot"
+							| LOGOUT
+
+			div.row
+				section#doc-list
+					header
+						h4
+							i> class="fi-heart"
+							| Help
+					ul
+						li
+							i> class="fi-megaphone"
+							a href="/news" Latest news
+						li
+							i> class="fi-list"
+							a href="/docs/about" About this community
+						li
+							i> class="fi-list"
+							a href="/docs/policy" Legal warning
+						li
+							i> class="fi-list"
+							a href="/docs/howto" Instructions
+						li
+							i> class="fi-bitcoin-circle"
+							a href="/docs/coins" Supported coin list
+						li
+							i> class="fi-plus"
+							a href="/docs/coin-add" Add new coins
+						li
+							i> class="fi-dollar"
+							a href="/docs/mining" Mining, shares and fees
+						li
+							i> class="fi-mail"
+							a href="/contact" Contact support
+						li
+							i> class="fi-social-twitter"
+							a href="http://twitter.com/manicminerpool" Twitter @ManicMinerPool
+						li
+							i> class="fi-social-facebook"
+							a href="https://www.facebook.com/pages/The-Manic-Miner/354200368056521"
+								| Facebook The Manic Miner
+						li
+							i> class="fi-asterisk"
+							a href="https://bitcointalk.org/index.php?topic=573160"
+								| Bitcointalk official thread
+
+		div class="large-5 small-12 columns right home-right" == @tweetsBlock

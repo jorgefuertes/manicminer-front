@@ -1,0 +1,11 @@
+/ coins.slim
+
+- content_for :page_title
+	' Supported Coins
+
+article class="doc calign"
+	h3
+		i> class="fi-bitcoin"
+		= t 'pages.coin.title'
+
+	== partial 'partials/coin-list'

@@ -1,0 +1,31 @@
+/ backup-list.slim
+
+section id="backup-list"
+	header
+		h2 Backup list
+		- total_size = 0
+		- Backup.find_each { |bk| total_size += bk.size }
+		h4 #{Backup.count} backups, #{bytesToHuman total_size}
+
+		table
+			thead
+				tr
+					th Time
+					th Kind
+					th Name
+					th Path
+					th Size
+					th OK
+					th Log
+			tbody
+				- Backup.order(:created_at.desc).each do |bk|
+					tr
+						td.small = bk.created_at
+						td.small = bk.kind
+						td.small = bk.name
+						td.small = bk.path
+						td class="small ralign" = bytesToHuman bk.size
+						td class="small #{bk.completed}" = t("bool.#{bk.completed}").upcase
+						td
+							a href="/frontadmin/backups/show/#{bk.id}"
+								i class="fi-book"

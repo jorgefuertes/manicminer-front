@@ -1,0 +1,18 @@
+/ news-add.slim
+
+h1 New post
+
+= form_tag '/frontadmin/news/post/add', {:'data-abide' => "", :id => "newPostForm"}
+	fieldset class="large-12 columns"
+		legend
+			i> class="fi-megaphone"
+			| Post
+		div class="row"
+			div
+				== getLabelFor :post, :locale
+				= select_tag :locale, :options => [['Spanish', 'es'], ['English', 'en']]
+				== completeInputField :post, 'text', 'title', {:required => true, :maxlenght => 150}
+				== completeInputField :post, 'text', 'slug', {:required => true, :maxlenght => 150}
+				== completeTextArea   :post, 'body', {:required => true}
+
+	button id="submit-form-btn" type="submit" class="button success radius" = t 'buttons.send'

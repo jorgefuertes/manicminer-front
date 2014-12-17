@@ -1,0 +1,71 @@
+/ _workers-list.slim
+
+- empty = false unless empty
+- admin_mode = false unless admin_mode
+- user = current_account unless user
+
+fieldset id="workers-list" class="large-12 columns clearfix" sandbox="allow-scripts"
+	legend
+		i> class="fi-wrench"
+		| #{t 'pages.profile.workers'}
+		img class="loader hide" src="/images/ajax-loader.gif"
+
+	- if empty
+		p
+			' Loading your workers,
+			a href="/user/profile/partials/workers-list" click here otherwise
+			| .
+	- else
+		table class="small-12 columns"
+			thead
+				tr
+					th = t 'pages.worker.name'
+					th class="calign" = t 'pages.worker.active'
+					th class="ralign show-for-large-up" = t 'pages.worker.difficulty'
+					th class="ralign" = t 'pages.worker.speed'
+					th class="ralign show-for-large-up" = t 'pages.worker.dead'
+					- unless admin_mode
+						th class="show-for-medium-up"
+			tbody
+				- counter = 0
+				- user.workers.sort(:name).each do |worker|
+					- running = isWorkerRunning(worker)
+					- counter += 1 if running
+					tr id="worker-#{worker.id}"
+						td #{user.name}.#{worker.name}
+						td class="active calign" == boolToHumanLabel running
+						td class="ralign show-for-large-up" = worker.difficulty
+						td class="speed ralign"
+							- if running
+								== hashesToHuman getWorkerSpeed(worker)
+							- else
+								== hashesToHuman 0
+						td class="dead ralign show-for-large-up"
+							- if running
+								== hashesToHuman getWorkerDeadSpeed(worker)
+							- else
+								| 0
+						- unless admin_mode
+							td class="actions calign show-for-medium-up"
+								- if !running
+									a href="#" onclick="deleteWorker('#{worker.id}');"
+										i class="fi-trash link-icon"
+									a href="/user/worker/edit/#{worker.id}"
+										i class="fi-pencil link-icon"
+								- else
+									== tooltipLabel('pages.profile.active', 'pages.profile.nonedit')
+			tfoot
+				tr
+					td colspan="100%"
+						p
+							= t 'pages.profile.workersCount', :count => user.workers.count
+							' ,
+						 	= t 'pages.profile.running', :count => counter
+						 	| .
+						- unless admin_mode
+							a href="/user/worker/add"
+								button class="radius small"
+									i class="fi-plus"
+									|  #{t 'pages.worker.add'}
+
+		== tooltipLabel('pages.profile.help', 'pages.profile.workersTip')

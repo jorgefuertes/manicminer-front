@@ -1,0 +1,12 @@
+section#tweets
+	header
+		h4
+			i> class="fi-social-twitter"
+			a href="http://twitter.com/manicminerpool" @ManicMinerPool
+	ul
+		- @tweets.each do |tweet|
+			li
+				== getLinkedTweet tweet.text
+				'
+				a href="#{tweet.url}"
+					i class="fi-arrow-right"

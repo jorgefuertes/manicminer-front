@@ -1,0 +1,19 @@
+# Thin server configuration
+
+user: padrino
+group: padrino
+pid: tmp/pids/thin.pid
+timeout: 30
+wait: 30
+log: log/thin.log
+max_conns: 1024
+require: []
+environment: production
+max_persistent_conns: 512
+servers: 8
+threaded: true
+no-epoll: true
+daemonize: true
+socket: tmp/sockets/thin.sock
+chdir: /home/padrino/manicminer-pool
+tag: manicminer-pool

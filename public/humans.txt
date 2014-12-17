@@ -1,0 +1,18 @@
+/* BANNER */
+	 __  __             _      __  __ _
+	|  \/  | __ _ _ __ (_) ___|  \/  (_)_ __   ___ _ __
+	| |\/| |/ _` | '_ \| |/ __| |\/| | | '_ \ / _ \ '__|
+	| |  | | (_| | | | | | (__| |  | | | | | |  __/ |
+	|_|  |_|\__,_|_| |_|_|\___|_|  |_|_|_| |_|\___|_|
+
+/* TEAM */
+	Founders: A bunch of freaks (rampa/queru)
+	Contact:  webmaster [at] our domain
+	Spam to:  tarrodemiel@manicminer.in
+	Twitter:  @ManicMinerPool
+	From:     The world
+
+/* SITE */
+	Since:    March 2014
+	Language: English and Spanish
+	Doctype:  HTML5

@@ -1,0 +1,101 @@
+/ coin-add.es.slim
+
+- content_for :page_title
+    ' Añadir nuevas monedas
+
+article class="doc"
+    h1 Cómo entran nuevas monedas en el pool
+
+    h3
+        i> class="fi-star"
+        | De oficio
+    div class="text"
+        ul
+            li Es rentable, está en las principales casas de cambio y puede ser interesante para nuestros mineros.
+            li Se audita internamente el código para comprobar su correcto funcionamiento.
+            li Se observa su funcionamiento y rentabilidad durante unos días.
+
+    h3
+        i> class="fi-star"
+        | Mediante solicitud
+    div class="text"
+        ul
+            p
+                ' Las monedas de cadena secundaria tienen mayores posibilidades de entrar ya que realmente no se consume
+                | potencia de minado en ellas.
+            p class="text-justify"
+                ' Para solicitar la entrada debes ser uno de sus responsables. Debes hacerlo a través del
+                a> href="/contact" formulario de contacto
+                ' de esta web, o de un email a
+                strong soporte en manicminer.in
+                | , indicando claramente:
+
+            ul
+                li: strong Datos personales:
+                ul
+                    li Nombre completo.
+                    li Rol o cargo en el equipo de la moneda.
+                    li Forma de contacto: email y teléfono para confirmación de identidad.
+
+                li: strong Datos de la moneda:
+                ul
+                    li Nombre de la moneda y símbolo (p.ej. PTC).
+                    li En qué casas de cambio está.
+                    li Enlace al repositorio de código.
+                    li Enlace a la página principal de la moneda.
+                    li Enlace a las descargas de los programas de usuario o monederos.
+                    li Enlace al explorador de bloques.
+                    li Enlace a los foros de discusión de la moneda.
+
+                li: strong  Motivación:
+                ul
+                    li Breve explicación de las características técnicas, incluyendo funcionamiento y novedades.
+                    li Breve explicación de los motivos por los que crees que deberíamos añadirla.
+
+        h3 Costes compartidos:
+
+        p class="text-justify"
+            ' El equipo de la moneda debe estar dispuesto a asumir el coste inicial del tradeo, especialmente si no
+            ' tiene casa de cambios, que se establece en un mínimo de
+            strong> 0.25 BTC
+            | lo que garantiza una recompensa mínima para los usuarios.
+
+        p class="text-justify"
+            ' Si quiere plantear otras condiciones, como inicio concreto de tasa de cambio, nuestro responsable
+            | financiero calculará el coste que habría que asumir.
+
+        p class="text-justify"
+            ' Este coste no compromete en absoluto a
+            em> ManicMiner.in
+            ' a mantener la moneda en el pool.
+
+    h3
+        i> class="fi-star"
+        | Retirada de monedas
+
+    div class="text"
+        p class="text-justify"
+            ' ManicMiner.in tiene dos políticas fundamentales e irrenunciables:
+            strong> rentabilidad para los usuarios
+            ' (mineros) y la
+            strong seguridad del sistema
+            | . Entre los motivos asociados a estas políticas están los siguientes:
+        ul
+            li
+                strong La moneda deja de ser rentable
+                ' : la potencia de minado aportada por un usuario no produce ganancias superiores al coste de
+                | producción.
+            li
+                strong> La moneda desaparece de las casas de cambio
+                | y no podemos asumir el pago. En este caso, puede ser asumido por los promotores.
+            li
+                strong> Se descubren comportamientos sospechosos o erróneos
+                | en el software de la moneda que afecten a su funcionamiento o al del pool.
+
+        p class="text-justify"
+            strong La retirada de una moneda es una decisión inapelable
+            ' , aunque sujeta a revisión si cambian las circunstancias. No implica ningún reembolso ni responsabilidad
+            ' alguna por parte de
+            em ManicMiner.in
+            ' , ya que cualquier ingreso cubre costes operativos y de auditoría ya
+            | amortizados en el momento de entrada de la moneda.

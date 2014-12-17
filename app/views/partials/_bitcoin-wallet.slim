@@ -1,0 +1,58 @@
+/ _bitcoin-wallet.slim
+
+- empty = false unless empty
+- admin_mode = false unless admin_mode
+- user = current_account unless user
+
+fieldset id="btc-wallet" class="large-12 columns clearfix" sandbox="allow-scripts"
+	legend
+		i class="fi-bitcoin"
+		|  #{t 'pages.profile.tradingResults'}
+		img class="loader hide" src="/images/ajax-loader.gif"
+
+	- if empty
+		p
+			' Loading bitcoin wallet,
+			a href="/user/profile/partials/bitcoin-wallet" click here otherwise
+			| .
+	- else
+		table class="wallets-table small-12 columns"
+			thead
+				tr
+					th = t 'pages.wallet.name'
+					th class="calign" = t 'pages.worker.coin'
+					th class="show-for-large-up" = t 'pages.wallet.address'
+					th class="amount ralign" = t 'pages.wallet.confirmed'
+					th class="show-for-large-up ralign" = t 'pages.wallet.payOn'
+					th class="show-for-large-up ralign" = t 'pages.wallet.fee'
+					- unless admin_mode
+						th
+			tbody
+				- btcCoin = Coin.first(:symbol => 'BTC')
+				- wallet  = user.wallets.first(:coin_id => btcCoin.id)
+				- balance = getBalance(wallet)
+				tr id="wallet-#{wallet.id}"
+					td = wallet.name
+					td class="calign #{wallet.coin.colorClass}" = wallet.coin.symbol
+					- addressClass = "green"
+					- addressClass = "brown" if wallet.address =~ /^\*/
+					td class="address show-for-large-up small #{addressClass}"
+						= wallet.address[0..64]
+					td class="amount ralign" = floatToHuman balance
+					- if wallet.payOn.nil? or wallet.payOn == 0
+						td class="show-for-large-up ralign" no
+					- else
+						td class="show-for-large-up ralign" = floatToHuman wallet.payOn
+					td class="txfee ralign show-for-large-up" #{floatToHuman wallet.coin.txFee}
+					- unless admin_mode
+						td class="actions"
+							span data-tooltip="" class="has-tip tip-top" title="#{t 'pages.wallet.edit'}"
+								a href="/user/wallet/edit/#{wallet.id}"
+									i class="fi-pencil link-icon"
+							- if wallet.address !~ /^\*/ and balance.to_f > 0
+								span[data-tooltip="" class="has-button has-tip tip-top"
+									title="#{t 'pages.wallet.payout'}"]
+									a class="small-button" href="/user/wallet/payout/#{wallet.id}"
+										i class="fi-upload link-icon"
+
+		== tooltipLabel('pages.profile.help', 'pages.profile.tradingResultsTip')

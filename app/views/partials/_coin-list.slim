@@ -1,0 +1,20 @@
+/ coin-list.slim
+
+table class="coin-list" style="margin: auto;"
+	thead
+		tr
+			th = t 'pages.coin.symbol'
+			th class="show-for-medium-up" = t 'pages.coin.name'
+			th class="ralign" = t 'pages.coin.chain'
+			th class="show-for-medium-up calign" = t 'pages.coin.wallets'
+			th class="calign" = t 'pages.coin.info'
+	tbody
+		- Coin.where(:active => true).sort(:name.asc).each do |coin|
+			- if coin.symbol != 'BTC'
+				tr id="coin-#{coin.id}"
+					td class="#{coin.colorClass}" = coin.symbol
+					td class="show-for-medium-up" = coin.name
+					td class="ralign #{coin.mainChain}" #{coin.mainChain ? 'main' : 'sec'}
+					td class="show-for-medium-up calign": a href="#{coin.urlWallets}" #{t 'pages.coin.link'}
+					td class="calign": a href="#{coin.url}" #{t 'pages.coin.link'}
+

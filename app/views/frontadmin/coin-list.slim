@@ -1,0 +1,83 @@
+/ coin-trst.strm
+
+section id="coin-list"
+	header
+		h2 Coin list (#{Coin.count} coins)
+
+	ul class="side-nav large-1 columns position-fixed"
+		- Coin.sort(:symbol).each do |coin|
+			li
+				a href="##{coin.id}"
+					i> class="fi-burst #{coin.colorClass}"
+					| #{coin.symbol}
+		li
+			a href="/frontadmin/coins/add"
+				button class="tiny round"
+					i> class="fi-plus"
+					| ADD
+
+	- Coin.sort(:symbol).each do |coin|
+		fieldset class="large-11 columns right non-edit-fieldset"
+			legend
+				i> class="fi-bitcoin"
+				=> coin.name
+				a name="#{coin.id}" •
+
+			div class="row"
+				div class="large-5 columns"
+					== nonEditField 'coin', 'name', coin.name
+				div class="large-4 columns"
+					== nonEditField 'coin', 'symbol', coin.symbol
+				div class="large-3 columns"
+					== nonEditField 'coin', 'colorClass', coin.colorClass
+			div class="row"
+				div class="large-2 columns left"
+					== nonEditField 'coin', 'mainChain', coin.mainChain
+				div class="large-1 columns left"
+					== nonEditField 'coin', 'active', coin.active
+				div class="large-1 columns left"
+					== nonEditField 'coin', 'powerOn', coin.powerOn
+				div class="large-1 columns left"
+					== nonEditField 'coin', 'getBlocks', coin.getBlocks
+				div class="large-1 columns left"
+					== nonEditField 'coin', 'autoShare', coin.autoShare
+				div class="large-2 columns left"
+					== nonEditField 'coin', 'integerOnly', coin.integerOnly
+				div class="large-1 columns left"
+					== nonEditField 'coin', 'tradeOn', coin.tradeOn
+			div class="row"
+				div class="large-4 columns"
+					== nonEditField 'coin', 'txFee', floatToHuman(coin.txFee)
+				div class="large-4 columns"
+					== nonEditField 'coin', 'blockValue', floatToHuman(coin.blockValue)
+				div class="large-2 columns left"
+					== nonEditField 'coin', 'confirms', coin.confirms
+			div class="row"
+				div class="large-6 columns"
+					== nonEditField 'coin', 'poolHost', coin.poolHost
+				div class="large-4 columns"
+					== nonEditField 'coin', 'poolPort', coin.poolPort
+				div class="large-2 columns"
+					== nonEditField 'coin', 'port', coin.port
+			div class="row"
+				div class="large-3 columns"
+					== nonEditField 'coin', 'rpcUser', coin.rpcUser
+				div class="large-3 columns"
+					== nonEditField 'coin', 'rpcPass', cutTo(coin.rpcPass, 20)
+				div class="large-4 columns"
+					== nonEditField 'coin', 'rpcHost', coin.rpcHost
+				div class="large-2 columns"
+					== nonEditField 'coin', 'rpcPort', coin.rpcPort
+			div class="row"
+				div class="large-12 columns"
+					== nonEditField 'coin', 'blockExplorer', coin.blockExplorer
+			div class="row"
+				div class="large-6 columns"
+					== nonEditField 'coin', 'url', coin.url
+				div class="large-6 columns"
+					== nonEditField 'coin', 'urlWallets', coin.urlWallets
+			div class="row"
+				div class="large-2 columns right ralign"
+					a class="button tiny" href="/frontadmin/coins/edit/#{coin.id}"
+						i> class="fi-pencil"
+						| EDIT

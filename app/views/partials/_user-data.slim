@@ -1,0 +1,37 @@
+/ _user-data.slim
+
+fieldset
+	legend
+		i class="fi-torso"
+		|  #{t 'titles.myprofile'}
+
+	- unless user.active
+		== alert(t('alerts.email-confirm.unconfirmed'), 'warning') unless user.emailConfirm
+		- if user.emailConfirm and user.active == false
+			== alert(t('alerts.user.deactivated'), 'warning')
+
+	table class="large-12 columns"
+		thead
+			tr
+				th colspan="2" = t 'pages.profile.mydata'
+		tbody
+			tr
+				td: strong = t 'forms.registration.name.label'
+				td = user.name
+			tr
+				td class="show-for-medium-up": strong = t 'forms.registration.email.label'
+				td class="show-for-medium-up"
+					- if user.emailConfirm
+						span class="label success radius" = user.email
+					- else
+						span> class="label alert radius" = user.email
+						a href="/register/activation/resend/#{user.id}"
+							= t 'pages.register.resend.link'
+			tr
+				td: strong = t 'forms.registration.password.label'
+				- url = '/user/password/edit'
+				- url = "/frontadmin/password/edit/#{user.id}" if admin_mode
+				td
+					a href="#{url}"
+						i> class="fi-pencil"
+						= t 'pages.profile.passwordEdit'

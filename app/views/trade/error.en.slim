@@ -1,0 +1,39 @@
+/ error.en.slim
+
+h2 Sorry, error detected
+
+div.panel
+	h3 class="change-alert" = errorText
+	p Trading data:
+	table
+		thead
+			tr
+				th colspan="2" Operation Bill
+		tbody
+			tr
+				th.ralign Wallet
+				td #{wallet.name}
+			tr
+				th.ralign Coin
+				td #{wallet.coin.name} (#{wallet.coin.symbol})
+			tr
+				th.ralign Amount
+				td #{floatToHuman funds}
+			tr
+				th.ralign Current rate
+				td #{floatToHuman btc_rate} BTC
+			tr
+				th.ralign Total BTC
+				td #{floatToHuman btc_total} BTC
+		tfoot
+			tr
+				td colspan="2"
+					strong> Operation code:
+					| #{cr_operation}
+
+	h4 Please write down the data and contact support if needed.
+
+a href="/user/profile"
+	button class="radius alert right"
+		i> class="fi-x"
+		| Cancel operation

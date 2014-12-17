@@ -1,0 +1,53 @@
+/ payout-confirm.slim
+
+h1 = t 'pages.wallet.payout'
+
+fieldset id="payout"
+	legend
+		i class="fi-upload"
+		|  #{t 'pages.wallet.tx'}
+
+	table class="large-12 columns"
+		thead
+			tr
+				th colspan="2" Payout Data
+		tr
+			th class="ralign" Coin:
+			td
+				=> @wallet.coin.name
+				| (
+				span class="#{@wallet.coin.colorClass}" = @wallet.coin.symbol
+				| )
+		tr
+			th class="ralign" From:
+			td ManiMiner:#{current_account.name}:#{@wallet.name}
+		tr
+			th class="ralign" To:
+			td #{@wallet.address}
+		tr
+			th class="ralign" Amount:
+			td
+				= floatToHuman getWalletBalance(@wallet)
+				span class="#{@wallet.coin.colorClass} small" = @wallet.coin.symbol
+		tr
+			th class="ralign" TxFee:
+			td
+				span class="zx-red"
+					| -
+					= floatToHuman @wallet.coin.txFee
+				span class="#{@wallet.coin.colorClass} small" = @wallet.coin.symbol
+		tr
+			th class="ralign" Total:
+			td
+				span class="zx-green" #{floatToHuman (getWalletBalance(@wallet) - @wallet.coin.txFee)}
+				span class="#{@wallet.coin.colorClass} small" = @wallet.coin.symbol
+
+a href="/user/wallet/payout-go/#{@wallet.id}"
+	button class="radius success small left"
+		i> class="fi-check"
+		= t 'buttons.confirm'
+
+a href="/user/profile"
+	button class="radius alert small right"
+		i> class="fi-x"
+		= t 'buttons.cancel'

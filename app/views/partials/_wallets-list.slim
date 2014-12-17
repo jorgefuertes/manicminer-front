@@ -1,0 +1,96 @@
+/ _wallets-list.slim
+
+- empty = false unless empty
+- admin_mode = false unless admin_mode
+- user = current_account unless user
+
+fieldset id="wallets-list" class="large-12 columns clearfix" sandbox="allow-scripts"
+	legend
+		i class="fi-book"
+		|  #{t 'pages.profile.wallets'}
+		img class="loader hide" src="/images/ajax-loader.gif"
+
+	- if empty
+		p
+			' Loading your wallets,
+			a href="/user/profile/partials/wallets-list" click here otherwise
+			| .
+	- else
+		- if missingWallets
+			== alert(t('pages.profile.missingWallets', :list => walletMissingList), :soft, 'fi-lightbulb')
+
+		table class="wallets-table small-12 columns"
+			thead
+				tr
+					th class="show-for-large-up" = t 'pages.wallet.name'
+					th class="calign" = t 'pages.worker.coin'
+					th class="show-for-large-up" = t 'pages.wallet.address'
+					th class="amount ralign" = t 'pages.wallet.confirmed'
+					th class="show-for-large-up ralign" = t 'pages.wallet.payOn'
+					th class="show-for-large-up ralign" = t 'pages.wallet.fee'
+					th class="amount ralign show-for-medium-up" = t 'pages.wallet.btc_value'
+					- unless admin_mode
+						th
+			tbody
+				- btc_total_avg = 0
+				- btc_total_lowest = 0
+				- wallets = user.wallets.all
+				- wallets.sort! {|a,b| a.coin.symbol <=> b.coin.symbol}
+				- wallets.each do |wallet|
+					- unless wallet.coin.symbol =~ /BTC/ or wallet.coin.active == false
+						- balance = getWalletBalance(wallet)
+						- btc_wallet_value = 0 if balance.is_a? String
+	   					- btc_wallet_value = btcValue(balance, wallet.coin.symbol)
+	   					- btc_wallet_min_value = btcMinValue(balance, wallet.coin.symbol)
+	                    - btc_total_avg += btc_wallet_value
+	                    - btc_total_lowest += btc_wallet_min_value
+						tr id="wallet-#{wallet.id}"
+							td class="show-for-large-up" = wallet.name
+							td class="calign #{wallet.coin.colorClass}" = wallet.coin.symbol
+							- addressClass = "green"
+							- addressClass = "brown" if wallet.address =~ /^\*/
+							td class="address show-for-large-up very-small #{addressClass}"
+								= wallet.address[0..64]
+							td class="amount ralign" = floatToHuman balance
+							- if wallet.payOn.nil? or wallet.payOn == 0
+								td class="show-for-large-up ralign" no
+							- else
+								td class="payon show-for-large-up ralign" = floatToHuman wallet.payOn
+							td class="fee show-for-large-up txfee ralign" #{floatToHuman wallet.coin.txFee}
+							td class="btc ralign show-for-medium-up"
+								span class="small gray" = t 'titles.ticker.min'
+								span class="medium" = floatToHuman btc_wallet_min_value
+								br
+								span class="small gray" = t 'titles.ticker.avg'
+								span class="medium"	= floatToHuman btc_wallet_value
+							- unless admin_mode
+								td class="actions"
+									span data-tooltip="" class="has-tip tip-top" title="#{t 'pages.wallet.edit'}"
+										a href="/user/wallet/edit/#{wallet.id}"
+											i class="fi-pencil link-icon"
+									- if wallet.address !~ /^\*/ and balance.to_f > 0
+										span[data-tooltip="" class="has-tip tip-top"
+											title="#{t 'pages.wallet.payout'}"]
+											a href="/user/wallet/payout/#{wallet.id}"
+												i class="fi-upload link-icon"
+									- if btc_wallet_value > 0 and wallet.coin.tradeOn
+										span data-tooltip="" class="has-tip tip-top" title="#{t 'pages.wallet.autotrade'}"
+											a href="/user/wallet/trade/#{wallet.id}"
+												i class="fi-arrow-right"
+												i class="fi-bitcoin link-icon"
+			tfoot
+				tr
+					td id="btc_total" colspan="100%" class="ralign"
+						span.small> #{t 'pages.wallet.btc_total'}:
+						span class="small gray" = t 'titles.ticker.min'
+						span = floatToHuman btc_total_lowest
+						| /
+						span class="small gray" = t 'titles.ticker.avg'
+						span> = floatToHuman btc_total_avg
+						span class="orange" BTC
+				tr
+					td colspan="100%" class="show-for-medium-up"
+						p #{t 'pages.profile.walletsCount', :count => user.wallets.count}:
+						p: a href="/docs/coins" [#{t 'titles.coins'}]
+
+		== tooltipLabel('pages.profile.help', 'pages.profile.walletsTip')

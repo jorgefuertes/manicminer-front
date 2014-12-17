@@ -1,0 +1,11 @@
+/ power-table.slim
+
+- content_for :page_title
+	= t 'titles.power_table'
+
+article class="doc"
+	h3
+		i> class="fi-star"
+		= t 'titles.power_table'
+
+	== partial 'partials/power-table'
